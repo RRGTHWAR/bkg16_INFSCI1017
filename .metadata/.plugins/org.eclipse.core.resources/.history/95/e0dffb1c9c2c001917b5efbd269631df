@@ -1,0 +1,16 @@
+package bkg16_Music;
+
+public class MusicTester {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Song testsong = new Song("Stairway to Heaven", 8, "1971-11-08", "1971-06-05");
+		System.out.println(testsong.getSongID())
+		System.out.println(testsong.getTitle());
+		System.out.println(testsong.getLength());
+		System.out.println(testsong.getReleaseDate());
+		System.out.println(testsong.getRecordDate());
+	}
+
+}

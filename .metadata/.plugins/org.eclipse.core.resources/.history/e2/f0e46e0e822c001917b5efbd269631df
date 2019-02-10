@@ -1,0 +1,16 @@
+package bkg16_Music;
+
+import java.util.Map;
+
+public class Song {
+	private String songID;
+	private String title;
+	private int length;
+	private String filePath;
+	private String releaseDate;
+	private String recordDate;
+	
+	private Map songArtists = new Map<String,Artist>();
+	
+	
+}

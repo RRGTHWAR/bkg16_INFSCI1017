@@ -1,0 +1,67 @@
+package bkg16_Music;
+
+public class MusicTester {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		/* SONG TESTING
+		Song test = new Song("Freshmen", 3, "1995-11-08", "1995-06-05");
+		System.out.println(test.getSongID());
+		System.out.println(test.getTitle());
+		System.out.println(test.getLength());
+		System.out.println(test.getReleaseDate());
+		System.out.println(test.getRecordDate());
+		
+		Song test2 = new Song("85c9c5da-867c-4443-8056-8dfee31c7021");
+		
+		test2.setTitle("Freshmen");
+		System.out.println(test2.getTitle());
+		System.out.println(test2.getLength());
+		System.out.println(test2.getFilePath());
+		System.out.println(test2.getReleaseDate());
+		System.out.println(test2.getRecordDate());
+
+		test2.deleteSong(test2.getSongID());
+		test2.getTitle();
+		
+		System.out.println(test2.getLength());
+		test2.setLength(3);
+		System.out.println(test2.getLength());
+		
+		System.out.println(test2.getReleaseDate());
+		test2.setReleaseDate("1995-01-01");
+		System.out.println(test2.getReleaseDate());
+		
+		System.out.println(test2.getRecordDate());
+		test2.setRecordDate("1995-01-01");
+		System.out.println(test2.getRecordDate());
+		
+		System.out.println(test2.getFilePath());
+		test2.setFilePath("test/test/Freshmen.song");
+		System.out.println(test2.getFilePath());
+		*/
+		
+		/*
+		Artist testArtist = new Artist("Brian", "Vander Ark", "The Verve Pipe");
+		System.out.println(testArtist.getArtistID());
+		System.out.println(testArtist.getFirstName());
+		System.out.println(testArtist.getLastName());
+		System.out.println(testArtist.getBandName());
+		System.out.println(testArtist.getBio());
+		*/
+		
+		Artist testArtist2 = new Artist("59b56c0f-cd60-4392-82e5-0182413762e5");
+		/*
+		System.out.println(testArtist2.getFirstName());
+		System.out.println(testArtist2.getLastName());
+		System.out.println(testArtist2.getBandName());
+		System.out.println(testArtist2.getBio());
+		*/
+		
+		testArtist2.deleteArtist(testArtist2.getArtistID());
+
+		
+	}
+
+}

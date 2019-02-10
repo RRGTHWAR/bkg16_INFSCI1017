@@ -1,0 +1,20 @@
+package bkg16_Music;
+
+public class MusicTester {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		/*Song test = new Song("Freshmen", 3, "1995-11-08", "1995-06-05");
+		System.out.println(test.getSongID());
+		System.out.println(test.getTitle());
+		System.out.println(test.getLength());
+		System.out.println(test.getReleaseDate());
+		System.out.println(test.getRecordDate());
+		*/
+		
+		Song test2 = new Song("d15c40dc-3c07-4584-9ae3-39edba1b42ed");
+		//test2.setTitle("Freshmen");
+	}
+
+}

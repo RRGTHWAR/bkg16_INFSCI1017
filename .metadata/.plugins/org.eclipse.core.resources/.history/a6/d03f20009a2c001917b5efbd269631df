@@ -1,0 +1,43 @@
+package bkg16_Music;
+
+import java.util.Hashtable;
+import java.util.Map;
+
+public class Song {
+	private String songID;
+	private String title;
+	private int length;
+	private String filePath;
+	private String releaseDate;
+	private String recordDate;
+	private Map songArtists;
+	
+	public Song(String title, int length, String releaseDate, String recordDate) {
+		this.title = title;
+		this.length = length;
+		this.releaseDate = releaseDate;
+		this.recordDate = recordDate;
+	}
+	
+	public Song(String songID) {
+		this.songID = songID;
+	}
+	
+	public void deleteSong(String songID) {
+		
+	}
+	
+	public void addArtist(Artist artist) {
+		
+	}
+	
+	public void deleteArtist(String artistID) {
+		
+	}
+	
+	public void deleteArtist(Artist artist) {
+		
+	}
+	
+	
+}

@@ -1,0 +1,11 @@
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Genre g = new Genre(5);
+		g.setGenreName("Americana");
+		g.setDescription("Music your dad likes");
+
+	}
+
+}

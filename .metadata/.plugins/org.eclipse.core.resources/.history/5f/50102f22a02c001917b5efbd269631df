@@ -1,0 +1,106 @@
+package bkg16_Music;
+
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.UUID;
+
+public class Song {
+	private String songID;
+	private String title;
+	private int length;
+	private String filePath;
+	private String releaseDate;
+	private String recordDate;
+	private DbUtilities db;
+	
+	private Map songArtists = new Hashtable<String, Artist>();
+
+	public Song(String title, int length, String releaseDate, String recordDate) {
+		this.songID = UUID.randomUUID().toString();
+		this.title = title;
+		this.length = length;
+		this.releaseDate = releaseDate;
+		this.recordDate = recordDate;
+		
+		db = new DbUtilities();
+		String sql = "INSERT INTO song (song_id, title, length, release_date, record_date) VALUES ('" + songID + "', '" + title + "', "+ length + ", '" + releaseDate + "', '" + recordDate +"');";
+		System.out.println(sql);
+		db.executeQuery(sql);
+	}
+	
+	public Song(String songID) {
+		this.songID = songID;
+	}
+	
+	public void deleteSong(String songID) {
+		
+	}
+	
+	public void addArtist(Artist artist) {
+		
+	}
+	
+	public void deleteArtist(String artistID) {
+		
+	}
+	
+	public void deleteArtist(Artist artist) {
+		
+	}
+	
+//Getters and Setters
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+		db = new DbUtilities();
+		String sql = "UPDATE song SET title = '" + title + "' WHERE song_id = '" + this.songID + "';";
+	}
+
+	public int getLength() {
+		return length;
+	}
+
+	public void setLength(int length) {
+		this.length = length;
+	}
+
+	public String getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
+	public String getRecordDate() {
+		return recordDate;
+	}
+
+	public void setRecordDate(String recordDate) {
+		this.recordDate = recordDate;
+	}
+
+	public Map getSongArtists() {
+		return songArtists;
+	}
+
+	public void setSongArtists(Map songArtists) {
+		this.songArtists = songArtists;
+	}
+
+	public String getSongID() {
+		return songID;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+	
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	
+}
