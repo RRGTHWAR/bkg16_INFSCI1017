@@ -1,0 +1,167 @@
+package bkg16_Music;
+
+import java.util.UUID;
+
+public class MusicTester {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//SONG TESTING
+		//Song test = new Song("Freshmen", 3, "1995-11-08", "1995-06-05");
+		//System.out.println(test.getSongID());
+		/*
+		System.out.println(test.getTitle());
+		System.out.println(test.getLength());
+		System.out.println(test.getReleaseDate());
+		System.out.println(test.getRecordDate());
+		*/
+		
+		Song test2 = new Song("31226d05-001c-4de1-bcb0-ade29dc95201");
+		//System.out.println(test2.getSongArtists());
+		
+		/*
+		test2.setTitle("Freshmen");
+		System.out.println(test2.getTitle());
+		System.out.println(test2.getLength());
+		System.out.println(test2.getFilePath());
+		System.out.println(test2.getReleaseDate());
+		System.out.println(test2.getRecordDate());
+		*/
+		
+		//test2.deleteSong(test2.getSongID());
+		//test2.getTitle();
+		
+		/*
+		System.out.println(test2.getLength());
+		test2.setLength(3);
+		System.out.println(test2.getLength());
+		
+		System.out.println(test2.getReleaseDate());
+		test2.setReleaseDate("1995-01-01");
+		System.out.println(test2.getReleaseDate());
+		
+		System.out.println(test2.getRecordDate());
+		test2.setRecordDate("1995-01-01");
+		System.out.println(test2.getRecordDate());
+		
+		System.out.println(test2.getFilePath());
+		test2.setFilePath("test/test/Freshmen.song");
+		System.out.println(test2.getFilePath());
+		*/		
+		
+		//ARTIST TESTING
+		/*
+		Artist testArtist = new Artist("Brian", "Vander Ark", "The Verve Pipe");
+		
+		System.out.println(testArtist.getArtistID());
+		System.out.println(testArtist.getFirstName());
+		System.out.println(testArtist.getLastName());
+		System.out.println(testArtist.getBandName());
+		System.out.println(testArtist.getBio());
+		*/
+
+		//Artist testArtist2 = new Artist("e5c53d6d-25cd-4e47-82a9-b06974f72d9d");
+		
+		/*
+		System.out.println(testArtist2.getFirstName());
+		System.out.println(testArtist2.getLastName());
+		System.out.println(testArtist2.getBandName());
+		System.out.println(testArtist2.getBio());
+		*/
+		
+		//testArtist2.deleteArtist(testArtist2.getArtistID());
+		//testArtist2.getFirstName();
+		
+		/*
+		System.out.println(testArtist2.getFirstName());
+		testArtist2.setFirstName("Brian");
+		System.out.println(testArtist2.getFirstName());
+
+		System.out.println(testArtist2.getLastName());
+		testArtist2.setLastName("Vander Ark");
+		System.out.println(testArtist2.getLastName());
+		
+		System.out.println(testArtist2.getBandName());
+		testArtist2.setBandName("The Verve Pipe");
+		System.out.println(testArtist2.getBandName());
+
+		System.out.println(testArtist2.getBio());
+		testArtist2.setBio("Band with one good song");
+		System.out.println(testArtist2.getBio());
+
+		test2.addArtist(testArtist2);
+		test2.deleteArtist("85d3f93a-5fde-479a-a4e0-7009a0a016ed");
+		test2.deleteArtist(testArtist2);
+		System.out.println(test2.getSongArtists());
+		*/
+		
+		//ALBUM TESTING
+		
+		//Album testAlbum = new Album("Villains", "1995-01-01", "Columbia", 12, "Meh", 43);
+		//System.out.println(testAlbum.getAlbumID());
+		/*
+		System.out.println(testAlbum.getTitle());
+		System.out.println(testAlbum.getReleaseDate());
+		System.out.println(testAlbum.getRecordingCompany());
+		System.out.println(testAlbum.getNumberOfTracks());
+		System.out.println(testAlbum.getPmrcRating());
+		System.out.println(testAlbum.getLength());
+		*/
+		
+		Album testAlbum2 = new Album("4417a8bc-3696-4f48-80e5-b37df55d5eaf");
+		testAlbum2.addSong(test2);
+		testAlbum2.getAlbumSongs();
+		/*
+		System.out.println(testAlbum2.getTitle());
+		System.out.println(testAlbum2.getReleaseDate());
+		System.out.println(testAlbum2.getCoverImagePath());
+		System.out.println(testAlbum2.getRecordingCompany());
+		System.out.println(testAlbum2.getNumberOfTracks());
+		System.out.println(testAlbum2.getPmrcRating());
+		System.out.println(testAlbum2.getLength());
+
+		testAlbum2.deleteAlbum(testAlbum2.getAlbumID());
+		testAlbum2.getTitle();
+
+		testAlbum2.getAlbumID();
+		testAlbum2.getReleaseDate();
+		
+		System.out.println(testAlbum2.getTitle());
+		testAlbum2.setTitle("Villains");
+		System.out.println(testAlbum2.getTitle());
+		
+		System.out.println(testAlbum2.getReleaseDate());
+		testAlbum2.setReleaseDate("1995-02-02");
+		System.out.println(testAlbum2.getReleaseDate());
+
+		
+		System.out.println(testAlbum2.getCoverImagePath());
+		testAlbum2.setCoverImagePath("some/where/or/other");
+		System.out.println(testAlbum2.getCoverImagePath());
+		
+		System.out.println(testAlbum2.getRecordingCompany());
+		testAlbum2.setRecordingCompany("Death Row");
+		System.out.println(testAlbum2.getRecordingCompany());
+		
+		System.out.println(testAlbum2.getNumberOfTracks());
+		testAlbum2.setNumberOfTracks(11);
+		System.out.println(testAlbum2.getNumberOfTracks());
+		
+		System.out.println(testAlbum2.getPmrcRating());
+		testAlbum2.setPmrcRating("Double Meh");
+		System.out.println(testAlbum2.getPmrcRating());
+		
+		System.out.println(testAlbum2.getLength());
+		testAlbum2.setLength(47);
+		System.out.println(testAlbum2.getLength());
+		*/
+		
+		//testAlbum2.addSong(test2);
+		//testAlbum2.deleteSong("31226d05-001c-4de1-bcb0-ade29dc95201");
+		//testAlbum2.deleteSong(test2);
+		//System.out.println(testAlbum2.getAlbumSongs());
+		
+	}
+
+}
