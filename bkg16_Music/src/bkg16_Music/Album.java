@@ -7,8 +7,9 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * @author bengundy
- *
+ * Class Album defines the Album object and includes methods for deleting the album and
+ * adding to and removing from the album's song list.
+ * @author Ben Gundy
  */
 public class Album {
 	private String albumID;
@@ -19,26 +20,30 @@ public class Album {
 	private int numberOfTracks;
 	private String pmrcRating;
 	private int length;
-	private Map<String, Song> albumSongs = new HashMap<String, Song>();
+	private Map<String, Song> albumSongs;
 	
 	private DbUtilities db;
 	
 	/**
-	 * @param title
-	 * @param releaseDate
-	 * @param recordingCompany
-	 * @param numberOfTracks
-	 * @param pmrcRating
-	 * @param length
+	 * The main constructor takes the title of the album and its release date, recording company,
+	 * number of tracks, PMRC rating and length and builds the album object, along with an empty
+	 * list of associated songs.
+	 * @param title is the title of the album.
+	 * @param releaseDate is the date on which the album was released.
+	 * @param recordingCompany is the company that recorded and released the album.
+	 * @param numberOfTracks is the number of tracks on the album. For now, this number is not automatically updated, but it could be in the future.
+	 * @param pmrcRating is the PMRC's rating for the album.
+	 * @param length is the length of the album in minutes.
 	 */
 	public Album(String title, String releaseDate, String recordingCompany, int numberOfTracks, String pmrcRating, int length) {
 		this.albumID = UUID.randomUUID().toString();
 		this.title = title;
 		this.releaseDate = releaseDate;
 		this.recordingCompany = recordingCompany;
-		this.numberOfTracks = numberOfTracks;
+		this.numberOfTracks = numberOfTracks; //In the future, could have this number automatically calculate as songs are added/removed.
 		this.pmrcRating = pmrcRating;
 		this.length = length;
+		this.albumSongs = new HashMap<String, Song>();
 		
 		db = new DbUtilities();
 		String sql = "INSERT INTO album (album_id, title, release_date, recording_company_name, number_of_tracks, PMRC_rating, length) VALUES ('" + this.albumID + "', '" + this.title + "', '" + this.releaseDate + "', '" + this.recordingCompany + "', " + this.numberOfTracks + ", '" + this.pmrcRating + "', " + this.length + ");";
@@ -47,10 +52,12 @@ public class Album {
 	}
 	
 	/**
-	 * @param albumID
+	 * This secondary constructor uses an albumID to build an object by referencing an album in the database.
+	 * @param albumID is the album's identifying UUID.
 	 */
 	public Album(String albumID) {
 		this.albumID = albumID;
+		this.albumSongs = new HashMap<String, Song>();
 		
 		db = new DbUtilities();
 		String sql = "SELECT title, release_date, cover_image_path, recording_company_name, number_of_tracks, PMRC_rating, length FROM album WHERE album_id = '" + this.albumID + "';";
@@ -67,7 +74,6 @@ public class Album {
 				this.length = rs.getInt("length");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -81,13 +87,13 @@ public class Album {
 				this.albumSongs.put(rs2.getString("fk_song_id"), new Song(rs2.getString("fk_song_id")));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	/**
-	 * @param albumID
+	 * This method deletes an album from the database and destroys the Java object.
+	 * @param albumID is the album's identifying UUID.
 	 */
 	public void deleteAlbum(String albumID) {
 		this.albumID = albumID;
@@ -103,7 +109,7 @@ public class Album {
 		//System.out.println(sql2);
 		db.executeQuery(sql2);
 		
-		//Setting pointers to null to destroy object.
+		//Setting fields to null or 0 to destroy object.
 		this.title = null;
 		this.releaseDate = null;
 		this.coverImagePath = null;
@@ -116,7 +122,8 @@ public class Album {
 	}
 	
 	/**
-	 * @param song
+	 * This method adds a song to the list of songs associated with the album.
+	 * @param song is the object of the song to be added.
 	 */
 	public void addSong(Song song) {
 		this.albumSongs.put(song.getSongID(), song);
@@ -128,7 +135,9 @@ public class Album {
 	}
 	
 	/**
-	 * @param songID
+	 * This method removes a song from the list of songs associated with the album.
+	 * The method does not remove the song from the database.
+	 * @param songID is the identifying UUID of the song to be removed.
 	 */
 	public void deleteSong(String songID) {
 		this.albumSongs.remove(songID);
@@ -140,7 +149,9 @@ public class Album {
 	}
 	
 	/**
-	 * @param song
+	 * This method also removes a song from the list of songs associated with the album.
+	 * The method does not remove the song from the database.
+	 * @param song is the object of the song to be removed.
 	 */
 	public void deleteSong(Song song) {
 		this.albumSongs.remove(song.getSongID());
@@ -152,16 +163,11 @@ public class Album {
 	}
 
 //Getters and Setters
-	/**
-	 * @return
-	 */
+
 	public String getTitle() {
 		return title;
 	}
 
-	/**
-	 * @param title
-	 */
 	public void setTitle(String title) {
 		this.title = title;
 		db = new DbUtilities();
@@ -170,16 +176,10 @@ public class Album {
 		db.executeQuery(sql);
 	}
 
-	/**
-	 * @return
-	 */
 	public String getReleaseDate() {
 		return releaseDate;
 	}
 
-	/**
-	 * @param releaseDate
-	 */
 	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
 		String sql = "UPDATE album SET release_date = '" + this.releaseDate + "' WHERE album_id = '" + this.albumID + "';";
@@ -187,16 +187,10 @@ public class Album {
 		db.executeQuery(sql);
 	}
 
-	/**
-	 * @return
-	 */
 	public String getCoverImagePath() {
 		return coverImagePath;
 	}
 
-	/**
-	 * @param coverImagePath
-	 */
 	public void setCoverImagePath(String coverImagePath) {
 		this.coverImagePath = coverImagePath;
 		String sql = "UPDATE album SET cover_image_path = '" + this.coverImagePath + "' WHERE album_id = '" + this.albumID + "';";
@@ -204,16 +198,10 @@ public class Album {
 		db.executeQuery(sql);
 	}
 
-	/**
-	 * @return
-	 */
 	public String getRecordingCompany() {
 		return recordingCompany;
 	}
 
-	/**
-	 * @param recordingCompany
-	 */
 	public void setRecordingCompany(String recordingCompany) {
 		this.recordingCompany = recordingCompany;
 		String sql = "UPDATE album SET recording_company_name = '" + this.recordingCompany + "' WHERE album_id = '" + this.albumID + "';";
@@ -221,16 +209,10 @@ public class Album {
 		db.executeQuery(sql);
 	}
 
-	/**
-	 * @return
-	 */
 	public int getNumberOfTracks() {
 		return numberOfTracks;
 	}
 
-	/**
-	 * @param numberOfTracks
-	 */
 	public void setNumberOfTracks(int numberOfTracks) {
 		this.numberOfTracks = numberOfTracks;
 		String sql = "UPDATE album SET number_of_tracks = " + this.numberOfTracks + " WHERE album_id = '" + this.albumID + "';";
@@ -238,16 +220,10 @@ public class Album {
 		db.executeQuery(sql);
 	}
 
-	/**
-	 * @return
-	 */
 	public String getPmrcRating() {
 		return pmrcRating;
 	}
 
-	/**
-	 * @param pmrcRating
-	 */
 	public void setPmrcRating(String pmrcRating) {
 		this.pmrcRating = pmrcRating;
 		String sql = "UPDATE album SET PMRC_rating = '" + this.pmrcRating + "' WHERE album_id = '" + this.albumID + "';";
@@ -255,16 +231,10 @@ public class Album {
 		db.executeQuery(sql);
 	}
 
-	/**
-	 * @return
-	 */
 	public int getLength() {
 		return length;
 	}
 
-	/**
-	 * @param length
-	 */
 	public void setLength(int length) {
 		this.length = length;
 		String sql = "UPDATE album SET length = " + this.length + " WHERE album_id = '" + this.albumID + "';";
@@ -272,17 +242,11 @@ public class Album {
 		db.executeQuery(sql);
 	}
 	
-	//Skipping setter for albumSongs, since they will be added via addSong method above.
-	/**
-	 * @return
-	 */
+	//Skipping setter for albumSongs, since they will be added and removed via the methods above.
 	public Map<String, Song> getAlbumSongs() {
 		return albumSongs;
 	}
 
-	/**
-	 * @return
-	 */
 	public String getAlbumID() {
 		return albumID;
 	}

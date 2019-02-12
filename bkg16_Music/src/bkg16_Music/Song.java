@@ -7,8 +7,9 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * @author bengundy
- *
+ * Class Song defines the Song object and includes methods for deleting the song and
+ * adding to and removing from the song's artist list.
+ * @author Ben Gundy
  */
 public class Song {
 	private String songID;
@@ -17,15 +18,17 @@ public class Song {
 	private String filePath;
 	private String releaseDate;
 	private String recordDate;
-	private Map<String, Artist> songArtists = new HashMap<String, Artist>(); //Initializing here for simplicity later
+	private Map<String, Artist> songArtists;
 
 	private DbUtilities db;
 	
 	/**
-	 * @param title
-	 * @param length
-	 * @param releaseDate
-	 * @param recordDate
+	 * The main constructor takes a title, length, release date and record date and builds the song,
+	 * as well as an empty list of artists.
+	 * @param title is the song's title.
+	 * @param length is the length of the song in minutes.
+	 * @param releaseDate is the date the song was released.
+	 * @param recordDate is the date the song was recorded.
 	 */
 	public Song(String title, int length, String releaseDate, String recordDate) {
 		this.songID = UUID.randomUUID().toString();
@@ -33,6 +36,7 @@ public class Song {
 		this.length = length;
 		this.releaseDate = releaseDate;
 		this.recordDate = recordDate;
+		this.songArtists = new HashMap<String, Artist>();
 		
 		db = new DbUtilities();
 		String sql = "INSERT INTO song (song_id, title, length, release_date, record_date) VALUES ('" + this.songID + "', '" + this.title + "', " + this.length + ", '" + this.releaseDate + "', '" + this.recordDate +"');";
@@ -41,10 +45,12 @@ public class Song {
 	}
 	
 	/**
-	 * @param songID
+	 * This secondary constructor uses a songID to build an object by referencing a song in the database.
+	 * @param songID is the song's identifying UUID.
 	 */
 	public Song(String songID) {
 		this.songID = songID;
+		this.songArtists = new HashMap<String, Artist>();
 		
 		db = new DbUtilities();
 		String sql = "SELECT title, length, file_path, release_date, record_date FROM song WHERE song_id = '" + this.songID + "';";
@@ -59,7 +65,6 @@ public class Song {
 				this.recordDate = rs.getString("record_date");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -73,13 +78,13 @@ public class Song {
 				this.songArtists.put(rs2.getString("fk_artist_id"), new Artist(rs2.getString("fk_artist_id")));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	/**
-	 * @param songID
+	 * This method deletes a song from the database and destroys the Java object.
+	 * @param songID is the song's identifying UUID.
 	 */
 	public void deleteSong(String songID) {
 		this.songID = songID;
@@ -107,7 +112,7 @@ public class Song {
 		//System.out.println(sql5);
 		db.executeQuery(sql5);
 		
-		//Setting pointers to null to destroy object.
+		//Setting fields to null or 0 to destroy object.
 		this.title = null;
 		this.length = 0;
 		this.filePath = null;
@@ -118,7 +123,8 @@ public class Song {
 	}
 	
 	/**
-	 * @param artist
+	 * This method adds an artist to the list of artists associated with the song.
+	 * @param artist is the object of the artist to be added.
 	 */
 	public void addArtist(Artist artist) {
 		this.songArtists.put(artist.getArtistID(), artist);
@@ -130,7 +136,9 @@ public class Song {
 	}
 	
 	/**
-	 * @param artistID
+	 * This method removes an artist from the list of artists associated with the song.
+	 * The method does not remove the artist from the database.
+	 * @param artistID is the identifying UUID of the artist to be removed.
 	 */
 	public void deleteArtist(String artistID) {
 		this.songArtists.remove(artistID);
@@ -142,7 +150,9 @@ public class Song {
 	}
 	
 	/**
-	 * @param artist
+	 * This method also removes an artist from the list of artists associated with the song.
+	 * The method does not remove the artist from the database.
+	 * @param artist is the object of the artist to be removed.
 	 */
 	public void deleteArtist(Artist artist) {
 		this.songArtists.remove(artist.getArtistID());
@@ -154,16 +164,11 @@ public class Song {
 	}
 	
 //Getters and Setters
-	/**
-	 * @return
-	 */
+
 	public String getTitle() {
 		return title;
 	}
 
-	/**
-	 * @param title
-	 */
 	public void setTitle(String title) {
 		this.title = title;
 		db = new DbUtilities();
@@ -172,16 +177,10 @@ public class Song {
 		db.executeQuery(sql);
 	}
 
-	/**
-	 * @return
-	 */
 	public int getLength() {
 		return length;
 	}
 
-	/**
-	 * @param length
-	 */
 	public void setLength(int length) {
 		this.length = length;
 		db = new DbUtilities();
@@ -190,16 +189,10 @@ public class Song {
 		db.executeQuery(sql);
 	}
 
-	/**
-	 * @return
-	 */
 	public String getReleaseDate() {
 		return releaseDate;
 	}
 
-	/**
-	 * @param releaseDate
-	 */
 	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
 		String sql = "UPDATE song SET release_date = '" + this.releaseDate + "' WHERE song_id = '" + this.songID + "';";
@@ -207,16 +200,10 @@ public class Song {
 		db.executeQuery(sql);
 	}
 
-	/**
-	 * @return
-	 */
 	public String getRecordDate() {
 		return recordDate;
 	}
 
-	/**
-	 * @param recordDate
-	 */
 	public void setRecordDate(String recordDate) {
 		this.recordDate = recordDate;
 		String sql = "UPDATE song SET record_date = '" + this.recordDate + "' WHERE song_id = '" + this.songID + "';";
@@ -224,31 +211,19 @@ public class Song {
 		db.executeQuery(sql);
 	}
 	
-	//Skipping setter for songArtists, since they will be added via addArtist method above.
-	/**
-	 * @return
-	 */
+	//Skipping setter for songArtists, since they will be added and removed via the methods above.
 	public Map<String, Artist> getSongArtists() {
 		return songArtists;
 	}
 
-	/**
-	 * @return
-	 */
 	public String getSongID() {
 		return songID;
 	}
 
-	/**
-	 * @return
-	 */
 	public String getFilePath() {
 		return filePath;
 	}
 	
-	/**
-	 * @param filePath
-	 */
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 		String sql = "UPDATE song SET file_path = '" + this.filePath + "' WHERE song_id = '" + this.songID + "';";

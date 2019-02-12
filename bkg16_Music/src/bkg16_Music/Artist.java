@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 /**
- * @author bengundy
- *
+ * Class Artist defines the Artist object and includes a method for deleting the artist.
+ * @author Ben Gundy
  */
 public class Artist {
 	private String artistID;
@@ -18,9 +18,12 @@ public class Artist {
 	private DbUtilities db;
 	
 	/**
-	 * @param firstName
-	 * @param lastName
-	 * @param bandName
+	 * The main constructor takes the artist's first and last name and the band's name and builds
+	 * the Artist object.
+	 * Note that any of these fields can be entered as nulls.
+	 * @param firstName is the artist's first name.
+	 * @param lastName is the artist's last name.
+	 * @param bandName is the name of the artist's band.
 	 */
 	public Artist(String firstName, String lastName, String bandName) {
 		this.artistID = UUID.randomUUID().toString();
@@ -35,7 +38,8 @@ public class Artist {
 	}
 	
 	/**
-	 * @param artistID
+	 * This secondary constructor uses an artistID to build an object by referencing an artist in the database.
+	 * @param artistID is the artist's identifying UUID.
 	 */
 	public Artist(String artistID) {
 		this.artistID = artistID;
@@ -52,13 +56,13 @@ public class Artist {
 				this.bio = rs.getString("bio");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * @param artistID
+	 * This method deletes an artist from the database and destroys the Java object.
+	 * @param artistID is the artist's identifying UUID.
 	 */
 	public void deleteArtist(String artistID) {
 		this.artistID = artistID;
@@ -74,7 +78,7 @@ public class Artist {
 		//System.out.println(sql2);
 		db.executeQuery(sql2);		
 		
-		//Setting pointers to null to destroy object.
+		//Setting fields to null to destroy object.
 		this.firstName = null;
 		this.lastName = null;
 		this.bandName = null;
@@ -83,16 +87,10 @@ public class Artist {
 	}
 	
 //Getters and Setters
-	/**
-	 * @return
-	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
-	/**
-	 * @param firstName
-	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 		String sql = "UPDATE artist SET first_name = '" + this.firstName + "' WHERE artist_id = '" + this.artistID + "';";
@@ -100,16 +98,10 @@ public class Artist {
 		db.executeQuery(sql);
 	}
 
-	/**
-	 * @return
-	 */
 	public String getLastName() {
 		return lastName;
 	}
 
-	/**
-	 * @param lastName
-	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 		String sql = "UPDATE artist SET last_name = '" + this.lastName + "' WHERE artist_id = '" + this.artistID + "';";
@@ -117,16 +109,10 @@ public class Artist {
 		db.executeQuery(sql);
 	}
 
-	/**
-	 * @return
-	 */
 	public String getBandName() {
 		return bandName;
 	}
 
-	/**
-	 * @param bandName
-	 */
 	public void setBandName(String bandName) {
 		this.bandName = bandName;
 		String sql = "UPDATE artist SET band_name = '" + this.bandName + "' WHERE artist_id = '" + this.artistID + "';";
@@ -134,16 +120,10 @@ public class Artist {
 		db.executeQuery(sql);
 	}
 
-	/**
-	 * @return
-	 */
 	public String getBio() {
 		return bio;
 	}
 
-	/**
-	 * @param bio
-	 */
 	public void setBio(String bio) {
 		this.bio = bio;
 		String sql = "UPDATE artist SET bio = '" + this.bio + "' WHERE artist_id = '" + this.artistID + "';";
@@ -152,9 +132,6 @@ public class Artist {
 
 	}
 
-	/**
-	 * @return
-	 */
 	public String getArtistID() {
 		return artistID;
 	}

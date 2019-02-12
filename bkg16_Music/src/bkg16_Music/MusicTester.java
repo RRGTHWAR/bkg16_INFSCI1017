@@ -2,34 +2,38 @@ package bkg16_Music;
 
 public class MusicTester {
 
+	/**
+	 * Testing class for other classes. String literals used here for testing only.
+	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		//SONG TESTING
-		//Song test = new Song("Freshmen", 3, "1995-11-08", "1995-06-05");
-		//System.out.println(test.getSongID());
 		/*
+		Song test = new Song("Freshmen", 3, "1995-11-08", "1995-06-05");
+		System.out.println(test.getSongID());
+		
 		System.out.println(test.getTitle());
 		System.out.println(test.getLength());
 		System.out.println(test.getReleaseDate());
 		System.out.println(test.getRecordDate());
 		*/
 		
-		//Song test2 = new Song("f0ccae1c-1cbd-40ad-b32c-87f159aafc27");
+		//Song test2 = new Song("52207168-f351-42bc-a741-13ea9c9c8f8a");
 		//System.out.println(test2.getSongArtists());
 		
 		/*
-		test2.setTitle("Freshmen");
+		test2.setTitle("Freshmen1");
 		
 		System.out.println(test2.getTitle());
 		System.out.println(test2.getLength());
 		System.out.println(test2.getFilePath());
 		System.out.println(test2.getReleaseDate());
 		System.out.println(test2.getRecordDate());
-		*/
 		
-		//test2.deleteSong(test2.getSongID());
-		//test2.getTitle();
+		
+		test2.deleteSong(test2.getSongID());
+		test2.getTitle();
+		*/
 		
 		/*
 		System.out.println(test2.getLength());
@@ -50,8 +54,9 @@ public class MusicTester {
 		*/		
 		
 		//ARTIST TESTING
+		
 		/*
-		Artist testArtist = new Artist("Brian", "Vander Ark", "The Verve Pipe");
+		Artist testArtist = new Artist("Jim", "James", null);
 		
 		System.out.println(testArtist.getArtistID());
 		System.out.println(testArtist.getFirstName());
@@ -60,7 +65,7 @@ public class MusicTester {
 		System.out.println(testArtist.getBio());
 		*/
 
-		//Artist testArtist2 = new Artist("e5c53d6d-25cd-4e47-82a9-b06974f72d9d");
+		//Artist testArtist2 = new Artist("d7345af2-a5dd-4470-a3bb-5407cfde9916");
 		
 		/*
 		System.out.println(testArtist2.getFirstName());
@@ -108,9 +113,9 @@ public class MusicTester {
 		System.out.println(testAlbum.getLength());
 		*/
 		
-		Album testAlbum2 = new Album("10ea48a7-c541-4f5f-a174-e82bc9c4607e");
+		//Album testAlbum2 = new Album("10ea48a7-c541-4f5f-a174-e82bc9c4607e");
 		//Based the below line on this: https://stackoverflow.com/questions/36782231/printing-a-java-map-mapstring-object-how
-		testAlbum2.getAlbumSongs().forEach((key, value) -> System.out.println(value.getTitle()));
+		//testAlbum2.getAlbumSongs().forEach((key, value) -> System.out.println(value.getTitle()));
 		//testAlbum2.addSong(test2);
 		//System.out.println(testAlbum2.getAlbumSongs());
 		/*
