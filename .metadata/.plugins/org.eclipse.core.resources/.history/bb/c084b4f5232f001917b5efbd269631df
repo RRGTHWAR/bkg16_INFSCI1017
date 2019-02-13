@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		ArrayList<IMovable> objList = new ArrayList<IMovable>();
+		
+		for(int i = 0, i<10, i++) {
+			objList.add(new Person());
+		}
+		IMovable gameObject = new Person();
+		gameObject.move(0, 0, 0, 0, 0);
+		
+		gameObject = new Monkey();
+		gameObject.move(0, 0, 0, 0, 0);
+
+	}
+
+}

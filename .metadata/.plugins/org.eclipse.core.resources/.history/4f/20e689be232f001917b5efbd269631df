@@ -1,0 +1,15 @@
+
+public class Tester {
+
+	public static void main(String[] args) {
+		
+		
+		IMovable gameObject = new Person();
+		gameObject.move(0, 0, 0, 0, 0);
+		
+		gameObject = new Monkey();
+		gameObject.move(0, 0, 0, 0, 0);
+
+	}
+
+}

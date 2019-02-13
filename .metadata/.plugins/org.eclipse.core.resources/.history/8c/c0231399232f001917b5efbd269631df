@@ -1,0 +1,13 @@
+
+public class Tester {
+
+	public static void main(String[] args) {
+		Person p = new Person();
+		p.move(0, 0, 0, 0, 0);
+		
+		Monkey m = new Monkey();
+		m.move(0, 0, 0, 0, 0);
+
+	}
+
+}

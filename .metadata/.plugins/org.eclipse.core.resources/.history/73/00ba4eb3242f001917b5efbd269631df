@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		ArrayList<IMovable> objList = new ArrayList<IMovable>();
+		
+		for(int i = 0; i<10; i++) {
+			if(i%2 == 0) {
+				objList.add(new Person());
+			}
+			else {
+				objList.add(new Monkey());
+			}
+		}
+		
+		for(int i = 0; i<objList.size(); i++) {
+			objList.get(i).move(0, 0, 0, 0, 0);
+		}
+
+	}
+
+}

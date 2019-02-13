@@ -1,0 +1,10 @@
+
+public class Person implements IMovable{
+
+	@Override
+	public void move(int x, int y, int z, double speed, double acc) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
