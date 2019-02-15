@@ -8,32 +8,33 @@ public class MusicTester {
 	public static void main(String[] args) {
 		
 		//SONG TESTING
-		/*
-		Song test = new Song("Freshmen", 3, "1995-11-08", "1995-06-05");
-		System.out.println(test.getSongID());
 		
+		//Song test = new Song("Peaches", 3, "1995-11-22", "1995-06-05");
+		//System.out.println(test.getSongID());
+		
+		/*
 		System.out.println(test.getTitle());
 		System.out.println(test.getLength());
 		System.out.println(test.getReleaseDate());
 		System.out.println(test.getRecordDate());
 		*/
 		
-		//Song test2 = new Song("52207168-f351-42bc-a741-13ea9c9c8f8a");
-		//System.out.println(test2.getSongArtists());
+		Song test2 = new Song("046c7644-dc85-4f0b-9202-e1c55558a16d");
+		System.out.println(test2.getSongArtists());
 		
+		
+		//test2.setTitle("Freshmen1");
 		/*
-		test2.setTitle("Freshmen1");
-		
 		System.out.println(test2.getTitle());
 		System.out.println(test2.getLength());
 		System.out.println(test2.getFilePath());
 		System.out.println(test2.getReleaseDate());
 		System.out.println(test2.getRecordDate());
-		
-		
-		test2.deleteSong(test2.getSongID());
-		test2.getTitle();
 		*/
+		
+		//test2.deleteSong(test2.getSongID());
+		//test2.getTitle();
+		
 		
 		/*
 		System.out.println(test2.getLength());
@@ -65,7 +66,7 @@ public class MusicTester {
 		System.out.println(testArtist.getBio());
 		*/
 
-		//Artist testArtist2 = new Artist("d7345af2-a5dd-4470-a3bb-5407cfde9916");
+		Artist testArtist2 = new Artist("03ce000c-08a7-4bbb-8919-0565bbde3742");
 		
 		/*
 		System.out.println(testArtist2.getFirstName());
@@ -93,7 +94,6 @@ public class MusicTester {
 		System.out.println(testArtist2.getBio());
 		testArtist2.setBio("Band with one good song");
 		System.out.println(testArtist2.getBio());
-
 		test2.addArtist(testArtist2);
 		test2.deleteArtist("85d3f93a-5fde-479a-a4e0-7009a0a016ed");
 		test2.deleteArtist(testArtist2);
