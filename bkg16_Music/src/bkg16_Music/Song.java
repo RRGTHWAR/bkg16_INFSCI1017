@@ -1,6 +1,7 @@
 package bkg16_Music;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -18,6 +19,7 @@ public class Song {
 	private String releaseDate;
 	private String recordDate;
 	private Map<String, Artist> songArtists;
+
 	private DbUtilities db;
 	
 	/**
@@ -37,23 +39,9 @@ public class Song {
 		this.songArtists = new HashMap<String, Artist>();
 		
 		db = new DbUtilities();
-		String sql = "INSERT INTO song (song_id, title, length, release_date, record_date) VALUES (?, ?, ?, ?, ?);";
-		try {
-			PreparedStatement stmt = db.getConn().prepareStatement(sql);
-			stmt.setString(1, this.songID);
-			stmt.setString(2, this.title);
-			stmt.setInt(3, this.length);
-			stmt.setString(4, this.releaseDate);
-			stmt.setString(5, this.recordDate);
-			stmt.executeUpdate();
-			
-			//System.out.println(stmt.toString());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+		String sql = "INSERT INTO song (song_id, title, length, release_date, record_date) VALUES ('" + this.songID + "', '" + this.title + "', " + this.length + ", '" + this.releaseDate + "', '" + this.recordDate +"');";
 		//System.out.println(sql);
-		//db.executeQuery(sql);
+		db.executeQuery(sql);
 	}
 	
 	/**
@@ -65,13 +53,10 @@ public class Song {
 		this.songArtists = new HashMap<String, Artist>();
 		
 		db = new DbUtilities();
-		String sql = "SELECT title, length, file_path, release_date, record_date FROM song WHERE song_id = ?;";
+		String sql = "SELECT title, length, file_path, release_date, record_date FROM song WHERE song_id = '" + this.songID + "';";
 		//System.out.println(sql);
 		try {
-			PreparedStatement stmt = db.getConn().prepareStatement(sql);
-			stmt.setString(1, this.songID);
-			
-			ResultSet rs = stmt.executeQuery();
+			ResultSet rs = db.getResultSet(sql);
 			if(rs.next()) {
 				this.title = rs.getString("title");
 				this.length = rs.getInt("length");
@@ -84,13 +69,10 @@ public class Song {
 		}
 		
 		//Populates list of artists by grabbing keys from song_artist table and adding artists to songArtists Map.
-		String sql2 = "SELECT fk_artist_id FROM song_artist WHERE fk_song_id = ?;";
+		String sql2 = "SELECT fk_artist_id FROM song_artist WHERE fk_song_id = '" + this.songID + "';";
 		//System.out.println(sql2);
 		try {
-			PreparedStatement stmt2 = db.getConn().prepareStatement(sql2);
-			stmt2.setString(1, this.songID);
-			
-			ResultSet rs2 = stmt2.executeQuery();
+			ResultSet rs2 = db.getResultSet(sql2);
 			//Using while instead of if, since the list will likely have more than one entry.
 			while(rs2.next()) {
 				this.songArtists.put(rs2.getString("fk_artist_id"), new Artist(rs2.getString("fk_artist_id")));
@@ -110,60 +92,25 @@ public class Song {
 		db = new DbUtilities();
 		
 		//Clearing out foreign key references in sql-sql4 before deleting song in sql5.
-		String sql = "DELETE FROM album_song WHERE fk_song_id = ?;";
+		String sql = "DELETE FROM album_song WHERE fk_song_id = '" + this.songID + "';";
 		//System.out.println(sql);
-		//db.executeQuery(sql);
-		try {
-			PreparedStatement stmt = db.getConn().prepareStatement(sql);
-			stmt.setString(1, this.songID);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		db.executeQuery(sql);
 		
-		String sql2 = "DELETE FROM playlist_song WHERE fk_song_id = ?;";
+		String sql2 = "DELETE FROM playlist_song WHERE fk_song_id = '" + this.songID + "';";
 		//System.out.println(sql2);
-		//db.executeQuery(sql2);
-		try {
-			PreparedStatement stmt2 = db.getConn().prepareStatement(sql2);
-			stmt2.setString(1, this.songID);
-			stmt2.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		String sql3 = "DELETE FROM song_artist WHERE fk_song_id = ?;";
+		db.executeQuery(sql2);
+				
+		String sql3 = "DELETE FROM song_artist WHERE fk_song_id = '" + this.songID + "';";
 		//System.out.println(sql3);
-		//db.executeQuery(sql3);
-		try {
-			PreparedStatement stmt3 = db.getConn().prepareStatement(sql3);
-			stmt3.setString(1, this.songID);
-			stmt3.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		db.executeQuery(sql3);
 		
-		String sql4 = "DELETE FROM song_genre WHERE fk_song_id = ?;";
+		String sql4 = "DELETE FROM song_genre WHERE fk_song_id = '" + this.songID + "';";
 		//System.out.println(sql4);
-		//db.executeQuery(sql4);
-		try {
-			PreparedStatement stmt4 = db.getConn().prepareStatement(sql4);
-			stmt4.setString(1, this.songID);
-			stmt4.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		db.executeQuery(sql4);
 		
-		String sql5 = "DELETE FROM song WHERE song_id = ?;";
+		String sql5 = "DELETE FROM song WHERE song_id = '" + this.songID + "';";
 		//System.out.println(sql5);
-		//db.executeQuery(sql5);
-		try {
-			PreparedStatement stmt5 = db.getConn().prepareStatement(sql5);
-			stmt5.setString(1, this.songID);
-			stmt5.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		db.executeQuery(sql5);
 		
 		//Setting fields to null or 0 to destroy object.
 		this.title = null;
@@ -183,18 +130,9 @@ public class Song {
 		this.songArtists.put(artist.getArtistID(), artist);
 		db = new DbUtilities();
 		//Using INSERT IGNORE here to avoid error on inserting duplicate values.
-		String sql = "INSERT IGNORE INTO song_artist (fk_song_id, fk_artist_id) VALUES (?, ?);";
+		String sql = "INSERT IGNORE INTO song_artist (fk_song_id, fk_artist_id) VALUES ('" + this.songID + "', '" + artist.getArtistID() + "');";
 		//System.out.println(sql);
-		//db.executeQuery(sql);	
-		
-		try {
-			PreparedStatement stmt = db.getConn().prepareStatement(sql);
-			stmt.setString(1, this.songID);
-			stmt.setString(2, artist.getArtistID());
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		db.executeQuery(sql);	
 	}
 	
 	/**
@@ -206,18 +144,9 @@ public class Song {
 		this.songArtists.remove(artistID);
 		db = new DbUtilities();
 		//Only deleting from song_artist, not artist, since we're only removing the reference.
-		String sql = "DELETE FROM song_artist WHERE fk_song_id = ? AND fk_artist_id = ?;";
+		String sql = "DELETE FROM song_artist WHERE fk_song_id = '" + this.songID + "' AND fk_artist_id = '" + artistID + "';";
 		//System.out.println(sql);
-		//db.executeQuery(sql);
-		
-		try {
-			PreparedStatement stmt = db.getConn().prepareStatement(sql);
-			stmt.setString(1, this.songID);
-			stmt.setString(2, artistID);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
+		db.executeQuery(sql);			
 	}
 	
 	/**
@@ -229,18 +158,9 @@ public class Song {
 		this.songArtists.remove(artist.getArtistID());
 		db = new DbUtilities();
 		//Only deleting from song_artist, not artist, since we're only removing the reference.
-		String sql = "DELETE FROM song_artist WHERE fk_song_id = ? AND fk_artist_id = ?;";
+		String sql = "DELETE FROM song_artist WHERE fk_song_id = '" + this.songID + "' AND fk_artist_id = '" + artist.getArtistID() + "';";
 		//System.out.println(sql);
-		//db.executeQuery(sql);
-		
-		try {
-			PreparedStatement stmt = db.getConn().prepareStatement(sql);
-			stmt.setString(1, this.songID);
-			stmt.setString(2, artist.getArtistID());
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
+		db.executeQuery(sql);	
 	}
 	
 //Getters and Setters
@@ -252,18 +172,9 @@ public class Song {
 	public void setTitle(String title) {
 		this.title = title;
 		db = new DbUtilities();
-		String sql = "UPDATE song SET title = ? WHERE song_id = ?;";
+		String sql = "UPDATE song SET title = '" + this.title + "' WHERE song_id = '" + this.songID + "';";
 		//System.out.println(sql);
-		//db.executeQuery(sql);
-		
-		try {
-			PreparedStatement stmt = db.getConn().prepareStatement(sql);
-			stmt.setString(1, this.title);
-			stmt.setString(2, this.songID);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		db.executeQuery(sql);
 	}
 
 	public int getLength() {
@@ -273,18 +184,9 @@ public class Song {
 	public void setLength(int length) {
 		this.length = length;
 		db = new DbUtilities();
-		String sql = "UPDATE song SET length = ? WHERE song_id = ?;";
+		String sql = "UPDATE song SET length = " + this.length + " WHERE song_id = '" + this.songID + "';";
 		//System.out.println(sql);
-		//db.executeQuery(sql);
-		
-		try {
-			PreparedStatement stmt = db.getConn().prepareStatement(sql);
-			stmt.setInt(1, this.length);
-			stmt.setString(2, this.songID);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		db.executeQuery(sql);
 	}
 
 	public String getReleaseDate() {
@@ -293,18 +195,9 @@ public class Song {
 
 	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
-		String sql = "UPDATE song SET release_date = ? WHERE song_id = ?;";
+		String sql = "UPDATE song SET release_date = '" + this.releaseDate + "' WHERE song_id = '" + this.songID + "';";
 		//System.out.println(sql);
-		//db.executeQuery(sql);
-		
-		try {
-			PreparedStatement stmt = db.getConn().prepareStatement(sql);
-			stmt.setString(1, this.releaseDate);
-			stmt.setString(2, this.songID);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		db.executeQuery(sql);
 	}
 
 	public String getRecordDate() {
@@ -313,18 +206,9 @@ public class Song {
 
 	public void setRecordDate(String recordDate) {
 		this.recordDate = recordDate;
-		String sql = "UPDATE song SET record_date = ? WHERE song_id = ?;";
+		String sql = "UPDATE song SET record_date = '" + this.recordDate + "' WHERE song_id = '" + this.songID + "';";
 		//System.out.println(sql);
-		//db.executeQuery(sql);
-		
-		try {
-			PreparedStatement stmt = db.getConn().prepareStatement(sql);
-			stmt.setString(1, this.recordDate);
-			stmt.setString(2, this.songID);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		db.executeQuery(sql);
 	}
 	
 	//Skipping setter for songArtists, since they will be added and removed via the methods above.
@@ -342,18 +226,9 @@ public class Song {
 	
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
-		String sql = "UPDATE song SET file_path = ? WHERE song_id = ?;";
+		String sql = "UPDATE song SET file_path = '" + this.filePath + "' WHERE song_id = '" + this.songID + "';";
 		//System.out.println(sql);
-		//db.executeQuery(sql);
-		
-		try {
-			PreparedStatement stmt = db.getConn().prepareStatement(sql);
-			stmt.setString(1, this.filePath);
-			stmt.setString(2, this.songID);
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		db.executeQuery(sql);
 	}
 	
 }
