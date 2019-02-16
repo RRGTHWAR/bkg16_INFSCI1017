@@ -8,29 +8,29 @@ public class MusicTester {
 	public static void main(String[] args) {
 		
 		//SONG TESTING
-		/*
-		Song test = new Song("Freshmen", 3, "1995-11-08", "1995-06-05");
-		System.out.println(test.getSongID());
 		
+		//Song test = new Song("Peaches", 2, "1995-10-08", "1995-06-25");
+		//System.out.println(test.getSongID());
+		/*
 		System.out.println(test.getTitle());
 		System.out.println(test.getLength());
 		System.out.println(test.getReleaseDate());
 		System.out.println(test.getRecordDate());
 		*/
 		
-		//Song test2 = new Song("52207168-f351-42bc-a741-13ea9c9c8f8a");
-		//System.out.println(test2.getSongArtists());
+		Song test2 = new Song("dddd18c7-8dc8-46f9-8cbd-8925e7b79f24");
+		System.out.println(test2.getSongArtists());
 		
 		/*
 		test2.setTitle("Freshmen1");
-		
+		*/
 		System.out.println(test2.getTitle());
 		System.out.println(test2.getLength());
 		System.out.println(test2.getFilePath());
 		System.out.println(test2.getReleaseDate());
 		System.out.println(test2.getRecordDate());
 		
-		
+		/*
 		test2.deleteSong(test2.getSongID());
 		test2.getTitle();
 		*/

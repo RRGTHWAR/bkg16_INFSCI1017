@@ -1,5 +1,6 @@
 package bkg16_Music;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
@@ -32,9 +33,20 @@ public class Artist {
 		this.bandName = bandName;
 		
 		db = new DbUtilities();
-		String sql = "INSERT INTO artist (artist_id, first_name, last_name, band_name) VALUES ('" + this.artistID + "', '" + this.firstName + "', '"+ this.lastName + "', '" + this.bandName + "');";
+		String sql = "INSERT INTO artist (artist_id, first_name, last_name, band_name) VALUES (?, ?, ?, ?);";
 		//System.out.println(sql);
-		db.executeQuery(sql);
+		//db.executeQuery(sql);
+		
+		try {
+			PreparedStatement stmt = db.getConn().prepareStatement(sql);
+			stmt.setString(1, this.artistID);
+			stmt.setString(2, this.firstName);
+			stmt.setString(3, this.lastName);
+			stmt.setString(4, this.bandName);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -45,10 +57,14 @@ public class Artist {
 		this.artistID = artistID;
 		
 		db = new DbUtilities();
-		String sql = "SELECT first_name, last_name, band_name, bio FROM artist WHERE artist_id = '" + this.artistID + "';";
+		String sql = "SELECT first_name, last_name, band_name, bio FROM artist WHERE artist_id = ?;";
 		//System.out.println(sql);
 		try {
-			ResultSet rs = db.getResultSet(sql);
+			//ResultSet rs = db.getResultSet(sql);
+			
+			PreparedStatement stmt = db.getConn().prepareStatement(sql);
+			stmt.setString(1, this.artistID);
+			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
 				this.firstName = rs.getString("first_name");
 				this.lastName = rs.getString("last_name");
@@ -70,13 +86,29 @@ public class Artist {
 		db = new DbUtilities();
 
 		//Clearing out foreign key reference in sql before deleting artist in sql2.
-		String sql = "DELETE FROM song_artist WHERE fk_artist_id = '" + this.artistID + "';";
+		String sql = "DELETE FROM song_artist WHERE fk_artist_id = ?;";
 		//System.out.println(sql);
-		db.executeQuery(sql);		
+		//db.executeQuery(sql);
 		
-		String sql2 = "DELETE FROM artist WHERE artist_id = '" + this.artistID + "';";
+		try {
+			PreparedStatement stmt = db.getConn().prepareStatement(sql);
+			stmt.setString(1, this.artistID);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		String sql2 = "DELETE FROM artist WHERE artist_id = ?;";
 		//System.out.println(sql2);
-		db.executeQuery(sql2);		
+		//db.executeQuery(sql2);
+		
+		try {
+			PreparedStatement stmt2 = db.getConn().prepareStatement(sql2);
+			stmt2.setString(1, this.artistID);
+			stmt2.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		//Setting fields to null to destroy object.
 		this.firstName = null;
@@ -93,9 +125,18 @@ public class Artist {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
-		String sql = "UPDATE artist SET first_name = '" + this.firstName + "' WHERE artist_id = '" + this.artistID + "';";
+		String sql = "UPDATE artist SET first_name = ? WHERE artist_id = ?;";
 		//System.out.println(sql);
-		db.executeQuery(sql);
+		//db.executeQuery(sql);
+		
+		try {
+			PreparedStatement stmt = db.getConn().prepareStatement(sql);
+			stmt.setString(1, firstName);
+			stmt.setString(2, this.artistID);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getLastName() {
@@ -104,9 +145,18 @@ public class Artist {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-		String sql = "UPDATE artist SET last_name = '" + this.lastName + "' WHERE artist_id = '" + this.artistID + "';";
+		String sql = "UPDATE artist SET last_name = ? WHERE artist_id = ?;";
 		//System.out.println(sql);
-		db.executeQuery(sql);
+		//db.executeQuery(sql);
+		
+		try {
+			PreparedStatement stmt = db.getConn().prepareStatement(sql);
+			stmt.setString(1, lastName);
+			stmt.setString(2, this.artistID);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getBandName() {
@@ -115,9 +165,18 @@ public class Artist {
 
 	public void setBandName(String bandName) {
 		this.bandName = bandName;
-		String sql = "UPDATE artist SET band_name = '" + this.bandName + "' WHERE artist_id = '" + this.artistID + "';";
+		String sql = "UPDATE artist SET band_name = ? WHERE artist_id = ?;";
 		//System.out.println(sql);
-		db.executeQuery(sql);
+		//db.executeQuery(sql);
+		
+		try {
+			PreparedStatement stmt = db.getConn().prepareStatement(sql);
+			stmt.setString(1, bandName);
+			stmt.setString(2, this.artistID);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getBio() {
@@ -126,10 +185,18 @@ public class Artist {
 
 	public void setBio(String bio) {
 		this.bio = bio;
-		String sql = "UPDATE artist SET bio = '" + this.bio + "' WHERE artist_id = '" + this.artistID + "';";
+		String sql = "UPDATE artist SET bio = ? WHERE artist_id = ?;";
 		//System.out.println(sql);
-		db.executeQuery(sql);
-
+		//db.executeQuery(sql);
+		
+		try {
+			PreparedStatement stmt = db.getConn().prepareStatement(sql);
+			stmt.setString(1, bio);
+			stmt.setString(2, this.artistID);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getArtistID() {
