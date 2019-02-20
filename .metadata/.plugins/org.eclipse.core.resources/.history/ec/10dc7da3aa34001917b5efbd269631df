@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<albumList>
+	<album>
+		<albumID>1</albumID>
+		<title>TestAlbum</title>
+		<releaseDate>1995-01-01</releaseDate>
+		<coverImagePath>some/where/or/other.place</coverImagePath>
+		<recordingCompany>Columbia</recordingCompany>
+		<numberOfTracks>15</numberOfTracks>
+		<pmrcRating>Explicit</pmrcRating>
+		<length>44</length>
+		<albumSongs>
+			<albumSong>
+				<songID>TestTestTestID</songID>
+				<song>
+				</song>
+			</albumSong>
+		</albumSongs>
+	</album>
+</albumList>

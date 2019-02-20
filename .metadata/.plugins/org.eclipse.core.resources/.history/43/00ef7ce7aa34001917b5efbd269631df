@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<songList>
+	<song>
+		<songID></songID>
+		<title></title>
+		<length></length>
+		<filePath></filePath>
+		<releaseDate></releaseDate>
+		<recordDate></recordDate>
+		<songArtists>
+			<artist></artist>
+		</songArtists>
+	</song>
+</songList>
+
+
+
+	private String songID;
+	private String title;
+	private int length;
+	private String filePath;
+	private String releaseDate;
+	private String recordDate;
+	private Map<String, Artist> songArtists;

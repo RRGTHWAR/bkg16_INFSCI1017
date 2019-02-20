@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artistList>
+	<artist>
+		<artistID>1</artistID>
+		<firstName>Jim</firstName>
+		<lastName>James</lastName>
+		<bandName>My Morning Jacket</bandName>
+		<bio>Hipster band</bio>
+	</artist>
+</artistList>
