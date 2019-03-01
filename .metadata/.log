@@ -809,3 +809,260 @@ java.lang.OutOfMemoryError: Java heap space
 
 !ENTRY org.eclipse.jface.text 2 0 2019-02-19 19:46:30.286
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.boolean'
+
+!ENTRY org.eclipse.datatools.connectivity 4 10001 2019-02-26 19:14:57.510
+!MESSAGE /Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/.metadata/.plugins/org.eclipse.birt.report.data.oda.jdbc.dbprofile.sampledb/db/META-INF/MANIFEST.MF (No such file or directory)
+!STACK 1
+org.eclipse.core.runtime.CoreException: /Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/.metadata/.plugins/org.eclipse.birt.report.data.oda.jdbc.dbprofile.sampledb/db/META-INF/MANIFEST.MF (No such file or directory)
+	at org.eclipse.birt.report.data.oda.jdbc.dbprofile.sampledb.internal.impl.SampleDbFactory.setInitializationData(SampleDbFactory.java:104)
+	at org.eclipse.core.internal.registry.ConfigurationElement.createExecutableExtension(ConfigurationElement.java:254)
+	at org.eclipse.core.internal.registry.ConfigurationElementHandle.createExecutableExtension(ConfigurationElementHandle.java:63)
+	at org.eclipse.datatools.connectivity.internal.InternalProfileManager.initializeLocalDatabase(InternalProfileManager.java:1380)
+	at org.eclipse.datatools.connectivity.internal.InternalProfileManager.loadLocalRegisteredDatabases(InternalProfileManager.java:1360)
+	at org.eclipse.datatools.connectivity.internal.InternalProfileManager.loadProfiles(InternalProfileManager.java:1070)
+	at org.eclipse.datatools.connectivity.internal.InternalProfileManager.getProfiles(InternalProfileManager.java:150)
+	at org.eclipse.datatools.connectivity.ProfileManager.getProfiles(ProfileManager.java:48)
+	at org.eclipse.jpt.jpa.db.internal.DTPConnectionProfileFactory.getDTPConnectionProfiles(DTPConnectionProfileFactory.java:84)
+	at org.eclipse.jpt.jpa.db.internal.DTPConnectionProfileFactory.getConnectionProfileNames(DTPConnectionProfileFactory.java:70)
+	at org.eclipse.jpt.jpa.core.internal.facet.JpaFacetDataModelProvider.getConnectionProfileNames(JpaFacetDataModelProvider.java:622)
+	at org.eclipse.jpt.jpa.core.internal.facet.JpaFacetDataModelProvider.buildValidConnectionNames(JpaFacetDataModelProvider.java:484)
+	at org.eclipse.jpt.jpa.core.internal.facet.JpaFacetDataModelProvider.buildValidConnectionDescriptors(JpaFacetDataModelProvider.java:472)
+	at org.eclipse.jpt.jpa.core.internal.facet.JpaFacetInstallDataModelProvider.getValidPropertyDescriptors(JpaFacetInstallDataModelProvider.java:174)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelImpl.getValidPropertyDescriptors(DataModelImpl.java:320)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelSynchHelper.setWidgetValue(DataModelSynchHelper.java:313)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelSynchHelper.doSynchUIWithModel(DataModelSynchHelper.java:237)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelSynchHelper.synchUIWithModel(DataModelSynchHelper.java:210)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelSynchHelper.synchComposite(DataModelSynchHelper.java:452)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelSynchHelper.synchCombo(DataModelSynchHelper.java:489)
+	at org.eclipse.jpt.jpa.ui.internal.wizards.JpaFacetInstallPage$ConnectionGroup.<init>(JpaFacetInstallPage.java:107)
+	at org.eclipse.jpt.jpa.ui.internal.wizards.JpaFacetInstallPage.addSubComposites(JpaFacetInstallPage.java:56)
+	at org.eclipse.jpt.jpa.ui.internal.wizards.JpaFacetActionPage.createTopLevelComposite(JpaFacetActionPage.java:54)
+	at org.eclipse.jpt.jpa.ui.internal.wizards.JpaFacetInstallPage.createTopLevelComposite(JpaFacetInstallPage.java:47)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelWizardPage.createControl(DataModelWizardPage.java:100)
+	at org.eclipse.wst.common.project.facet.ui.ModifyFacetedProjectWizard.handleSelectedFacetsChangedEvent(ModifyFacetedProjectWizard.java:728)
+	at org.eclipse.wst.common.project.facet.ui.ModifyFacetedProjectWizard.createPageControls(ModifyFacetedProjectWizard.java:310)
+	at org.eclipse.jface.wizard.WizardDialog.createPageControls(WizardDialog.java:685)
+	at org.eclipse.jface.wizard.WizardDialog.createContents(WizardDialog.java:577)
+	at org.eclipse.jface.window.Window.create(Window.java:430)
+	at org.eclipse.jface.dialogs.Dialog.create(Dialog.java:1099)
+	at org.eclipse.jface.window.Window.open(Window.java:787)
+	at org.eclipse.jpt.jpa.ui.internal.handlers.ConvertJavaProjectToJpaCommandHandler$ConvertJavaProjectToJpaRunnable.runInProgressDialog(ConvertJavaProjectToJpaCommandHandler.java:99)
+	at org.eclipse.jpt.jpa.ui.internal.handlers.ConvertJavaProjectToJpaCommandHandler.execute(ConvertJavaProjectToJpaCommandHandler.java:68)
+	at org.eclipse.ui.internal.handlers.HandlerProxy.execute(HandlerProxy.java:294)
+	at org.eclipse.ui.internal.handlers.E4HandlerProxy.execute(E4HandlerProxy.java:96)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invokeUsingClass(InjectorImpl.java:320)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invoke(InjectorImpl.java:254)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.invoke(ContextInjectionFactory.java:164)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceHandler.execute(HandlerServiceHandler.java:156)
+	at org.eclipse.core.commands.Command.executeWithChecks(Command.java:497)
+	at org.eclipse.core.commands.ParameterizedCommand.executeWithChecks(ParameterizedCommand.java:490)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.executeHandler(HandlerServiceImpl.java:213)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.executeItem(HandledContributionItem.java:438)
+	at org.eclipse.e4.ui.workbench.renderers.swt.AbstractContributionItem.handleWidgetSelection(AbstractContributionItem.java:449)
+	at org.eclipse.e4.ui.workbench.renderers.swt.AbstractContributionItem.lambda$2(AbstractContributionItem.java:475)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4319)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1512)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1535)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1520)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:1324)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4143)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3760)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1173)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1062)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:563)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:151)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:595)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1501)
+Caused by: java.io.FileNotFoundException: /Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/.metadata/.plugins/org.eclipse.birt.report.data.oda.jdbc.dbprofile.sampledb/db/META-INF/MANIFEST.MF (No such file or directory)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:162)
+	at org.eclipse.birt.report.data.oda.jdbc.dbprofile.sampledb.internal.impl.SampleDbFactory.initSampleDb(SampleDbFactory.java:187)
+	at org.eclipse.birt.report.data.oda.jdbc.dbprofile.sampledb.internal.impl.SampleDbFactory.setInitializationData(SampleDbFactory.java:88)
+	... 78 more
+!SUBENTRY 1 org.eclipse.birt.report.data.oda.jdbc.dbprofile.sampledb 4 0 2019-02-26 19:14:57.516
+!MESSAGE /Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/.metadata/.plugins/org.eclipse.birt.report.data.oda.jdbc.dbprofile.sampledb/db/META-INF/MANIFEST.MF (No such file or directory)
+!STACK 0
+java.io.FileNotFoundException: /Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/.metadata/.plugins/org.eclipse.birt.report.data.oda.jdbc.dbprofile.sampledb/db/META-INF/MANIFEST.MF (No such file or directory)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:162)
+	at org.eclipse.birt.report.data.oda.jdbc.dbprofile.sampledb.internal.impl.SampleDbFactory.initSampleDb(SampleDbFactory.java:187)
+	at org.eclipse.birt.report.data.oda.jdbc.dbprofile.sampledb.internal.impl.SampleDbFactory.setInitializationData(SampleDbFactory.java:88)
+	at org.eclipse.core.internal.registry.ConfigurationElement.createExecutableExtension(ConfigurationElement.java:254)
+	at org.eclipse.core.internal.registry.ConfigurationElementHandle.createExecutableExtension(ConfigurationElementHandle.java:63)
+	at org.eclipse.datatools.connectivity.internal.InternalProfileManager.initializeLocalDatabase(InternalProfileManager.java:1380)
+	at org.eclipse.datatools.connectivity.internal.InternalProfileManager.loadLocalRegisteredDatabases(InternalProfileManager.java:1360)
+	at org.eclipse.datatools.connectivity.internal.InternalProfileManager.loadProfiles(InternalProfileManager.java:1070)
+	at org.eclipse.datatools.connectivity.internal.InternalProfileManager.getProfiles(InternalProfileManager.java:150)
+	at org.eclipse.datatools.connectivity.ProfileManager.getProfiles(ProfileManager.java:48)
+	at org.eclipse.jpt.jpa.db.internal.DTPConnectionProfileFactory.getDTPConnectionProfiles(DTPConnectionProfileFactory.java:84)
+	at org.eclipse.jpt.jpa.db.internal.DTPConnectionProfileFactory.getConnectionProfileNames(DTPConnectionProfileFactory.java:70)
+	at org.eclipse.jpt.jpa.core.internal.facet.JpaFacetDataModelProvider.getConnectionProfileNames(JpaFacetDataModelProvider.java:622)
+	at org.eclipse.jpt.jpa.core.internal.facet.JpaFacetDataModelProvider.buildValidConnectionNames(JpaFacetDataModelProvider.java:484)
+	at org.eclipse.jpt.jpa.core.internal.facet.JpaFacetDataModelProvider.buildValidConnectionDescriptors(JpaFacetDataModelProvider.java:472)
+	at org.eclipse.jpt.jpa.core.internal.facet.JpaFacetInstallDataModelProvider.getValidPropertyDescriptors(JpaFacetInstallDataModelProvider.java:174)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelImpl.getValidPropertyDescriptors(DataModelImpl.java:320)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelSynchHelper.setWidgetValue(DataModelSynchHelper.java:313)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelSynchHelper.doSynchUIWithModel(DataModelSynchHelper.java:237)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelSynchHelper.synchUIWithModel(DataModelSynchHelper.java:210)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelSynchHelper.synchComposite(DataModelSynchHelper.java:452)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelSynchHelper.synchCombo(DataModelSynchHelper.java:489)
+	at org.eclipse.jpt.jpa.ui.internal.wizards.JpaFacetInstallPage$ConnectionGroup.<init>(JpaFacetInstallPage.java:107)
+	at org.eclipse.jpt.jpa.ui.internal.wizards.JpaFacetInstallPage.addSubComposites(JpaFacetInstallPage.java:56)
+	at org.eclipse.jpt.jpa.ui.internal.wizards.JpaFacetActionPage.createTopLevelComposite(JpaFacetActionPage.java:54)
+	at org.eclipse.jpt.jpa.ui.internal.wizards.JpaFacetInstallPage.createTopLevelComposite(JpaFacetInstallPage.java:47)
+	at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelWizardPage.createControl(DataModelWizardPage.java:100)
+	at org.eclipse.wst.common.project.facet.ui.ModifyFacetedProjectWizard.handleSelectedFacetsChangedEvent(ModifyFacetedProjectWizard.java:728)
+	at org.eclipse.wst.common.project.facet.ui.ModifyFacetedProjectWizard.createPageControls(ModifyFacetedProjectWizard.java:310)
+	at org.eclipse.jface.wizard.WizardDialog.createPageControls(WizardDialog.java:685)
+	at org.eclipse.jface.wizard.WizardDialog.createContents(WizardDialog.java:577)
+	at org.eclipse.jface.window.Window.create(Window.java:430)
+	at org.eclipse.jface.dialogs.Dialog.create(Dialog.java:1099)
+	at org.eclipse.jface.window.Window.open(Window.java:787)
+	at org.eclipse.jpt.jpa.ui.internal.handlers.ConvertJavaProjectToJpaCommandHandler$ConvertJavaProjectToJpaRunnable.runInProgressDialog(ConvertJavaProjectToJpaCommandHandler.java:99)
+	at org.eclipse.jpt.jpa.ui.internal.handlers.ConvertJavaProjectToJpaCommandHandler.execute(ConvertJavaProjectToJpaCommandHandler.java:68)
+	at org.eclipse.ui.internal.handlers.HandlerProxy.execute(HandlerProxy.java:294)
+	at org.eclipse.ui.internal.handlers.E4HandlerProxy.execute(E4HandlerProxy.java:96)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invokeUsingClass(InjectorImpl.java:320)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invoke(InjectorImpl.java:254)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.invoke(ContextInjectionFactory.java:164)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceHandler.execute(HandlerServiceHandler.java:156)
+	at org.eclipse.core.commands.Command.executeWithChecks(Command.java:497)
+	at org.eclipse.core.commands.ParameterizedCommand.executeWithChecks(ParameterizedCommand.java:490)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.executeHandler(HandlerServiceImpl.java:213)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.executeItem(HandledContributionItem.java:438)
+	at org.eclipse.e4.ui.workbench.renderers.swt.AbstractContributionItem.handleWidgetSelection(AbstractContributionItem.java:449)
+	at org.eclipse.e4.ui.workbench.renderers.swt.AbstractContributionItem.lambda$2(AbstractContributionItem.java:475)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4319)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1512)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1535)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1520)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:1324)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4143)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3760)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1173)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1062)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:636)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:563)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:151)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:595)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1501)
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:17.568
+!MESSAGE Could not publish server configuration for Tomcat v9.0 Server at localhost.
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:17.568
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:17.569
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:17.569
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:17.569
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:22.560
+!MESSAGE Could not publish server configuration for Tomcat v9.0 Server at localhost.
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:22.560
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:22.560
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:22.560
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:22.560
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:23.791
+!MESSAGE Could not publish server configuration for Tomcat v9.0 Server at localhost.
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:23.791
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:23.791
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:23.791
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:49:23.791
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:51:10.114
+!MESSAGE Could not publish server configuration for Tomcat v9.0 Server at localhost.
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:51:10.114
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:51:10.114
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:51:10.114
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:51:10.114
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:51:53.522
+!MESSAGE Could not publish server configuration for Tomcat v9.0 Server at localhost.
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:51:53.523
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:51:53.523
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:51:53.523
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:51:53.523
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:52:07.020
+!MESSAGE Could not publish server configuration for Tomcat v9.0 Server at localhost.
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:52:07.020
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:52:07.020
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:52:07.020
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:52:07.020
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:52:12.573
+!MESSAGE Could not publish server configuration for Tomcat v9.0 Server at localhost.
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:52:12.573
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:52:12.573
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:52:12.573
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".
+!SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2019-02-26 19:52:12.573
+!MESSAGE Multiple Contexts have a path of "/bkg16_Music".

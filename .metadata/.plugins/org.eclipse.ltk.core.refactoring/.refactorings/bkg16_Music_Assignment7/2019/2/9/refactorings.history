@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;bkg16_Music_Assignment7&apos;&#x0A;- Original project: &apos;bkg16_Music_Assignment7&apos;&#x0A;- Original element: &apos;bkg16_Music.DbUtilities.java&apos;" description="Delete element" element1="/src&lt;bkg16_Music{DbUtilities.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1551319027593" subPackages="false" version="1.0"/>
+</session>

@@ -1,0 +1,20 @@
+package bkg16_Music;
+
+import javax.persistence.*;
+
+public class MusicTester {
+
+	/**
+	 * Testing class for other classes. String literals used here for testing only.
+	 */
+	public static void main(String[] args) {
+		EntityManagerFactory emFactory =
+				Persistence.createEntityManagerFactory("bkg16_MusicSong");
+		
+		EntityManager em = emFactory.createEntityManager();
+		
+		em.getTransaction().begin();
+		Song s = new Song();
+	}
+
+}

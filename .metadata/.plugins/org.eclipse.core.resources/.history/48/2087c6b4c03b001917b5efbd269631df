@@ -1,0 +1,26 @@
+package bkg16_Music;
+
+public class MusicTester {
+
+	/**
+	 * Testing class for other classes. String literals used here for testing only.
+	 */
+	public static void main(String[] args) {
+		
+		SongManager sm = new SongManager();
+		
+		sm.createSong("Dear Prudence", 4, "some/where/or/other", "1968-11-22", "1968-08-28");
+		//sm.updateSong("4340075f-b468-4e60-a28d-f92a963d241b", "", 3, "", "", "");
+		//sm.deleteSong("5d4d1942-8829-4219-8a3e-5d612bb5b206");
+		
+		/*
+		Song testSong = sm.findSong("5d4d1942-8829-4219-8a3e-5d612bb5b206");
+		System.out.println(testSong.getTitle());
+		System.out.println(testSong.getLength());
+		System.out.println(testSong.getFilePath());
+		System.out.println(testSong.getReleaseDate());
+		System.out.println(testSong.getRecordDate());
+		*/
+	}
+
+}

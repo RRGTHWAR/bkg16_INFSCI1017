@@ -1,0 +1,14 @@
+package bkg16_Music;
+
+public class MusicTester {
+
+	/**
+	 * Testing class for other classes. String literals used here for testing only.
+	 */
+	public static void main(String[] args) {
+		SongManager sm = new SongManager();
+		sm.createSong("Dear Prudence", 4, "some/where/or/other", "1968-11-22", "1968-08-28");
+		
+	}
+
+}

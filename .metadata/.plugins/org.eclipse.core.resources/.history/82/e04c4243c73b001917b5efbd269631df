@@ -1,0 +1,109 @@
+package bkg16_Music;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.UUID;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**
+ * Class Artist defines the Artist object and includes a method for deleting the artist.
+ * @author Ben Gundy
+ */
+@Entity
+@Table (name="artist")
+public class Artist {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	
+	@Column
+	private String artistID;
+	private String firstName;
+	private String lastName;
+	private String bandName;
+	private String bio;
+
+	
+	/**
+	 * The main constructor takes the artist's first and last name and the band's name and builds
+	 * the Artist object.
+	 * Note that any of these fields can be entered as nulls.
+	 * @param firstName is the artist's first name.
+	 * @param lastName is the artist's last name.
+	 * @param bandName is the name of the artist's band.
+	 */
+	public Artist(String firstName, String lastName, String bandName) {
+		this.artistID = UUID.randomUUID().toString();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.bandName = bandName;
+
+	}
+	
+	/**
+	 * This secondary constructor uses an artistID to build an object by referencing an artist in the database.
+	 * @param artistID is the artist's identifying UUID.
+	 */
+	public Artist(String artistID) {
+		this.artistID = artistID;
+		
+	}
+
+	/**
+	 * This method deletes an artist from the database and destroys the Java object.
+	 * @param artistID is the artist's identifying UUID.
+	 */
+	public void deleteArtist(String artistID) {
+		this.artistID = artistID;
+				
+		//Setting fields to null to destroy object.
+		this.firstName = null;
+		this.lastName = null;
+		this.bandName = null;
+		this.bio = null;
+		this.artistID = null;
+	}
+	
+//Getters and Setters
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getBandName() {
+		return bandName;
+	}
+
+	public void setBandName(String bandName) {
+		this.bandName = bandName;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public String getArtistID() {
+		return artistID;
+	}
+
+}
