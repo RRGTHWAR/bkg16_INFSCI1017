@@ -11,6 +11,7 @@ INDEX VERSION 1.4+/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/.metadata/.p
 775744052.index
 2565480611.index
 768355225.index
+3259692905.index
 1463414992.index
 3413178238.index
 2800397913.index
@@ -18,8 +19,10 @@ INDEX VERSION 1.4+/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/.metadata/.p
 3263850982.index
 1192416069.index
 1899153748.index
+2341391242.index
 1730736002.index
 2656568922.index
+3084621161.index
 4071856261.index
 1977604822.index
 3548105817.index

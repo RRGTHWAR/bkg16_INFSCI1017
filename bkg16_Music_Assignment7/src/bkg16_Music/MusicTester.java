@@ -1,9 +1,16 @@
 package bkg16_Music;
 
+/**
+ * Class MusicTester is the testing class for other classes.
+ * String literals used here for testing only.
+ * @author bengundy
+ *
+ */
 public class MusicTester {
 
 	/**
-	 * Testing class for other classes. String literals used here for testing only.
+	 * Main testing method.
+	 * @param args is the arguments for the public static void main method.
 	 */
 	public static void main(String[] args) {
 		

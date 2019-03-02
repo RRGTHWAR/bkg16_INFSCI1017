@@ -26,23 +26,6 @@ public class Artist {
 	
 	@Column(name = "bio")
 	private String bio;
-
-	
-
-	/**
-	 * This method deletes an artist from the database and destroys the Java object.
-	 * @param artistID is the artist's identifying UUID.
-	 */
-	public void deleteArtist(String artistID) {
-		this.artistID = artistID;
-				
-		//Setting fields to null to destroy object.
-		this.firstName = null;
-		this.lastName = null;
-		this.bandName = null;
-		this.bio = null;
-		this.artistID = null;
-	}
 	
 //Getters and Setters
 	public void setArtistID(String artistID) {

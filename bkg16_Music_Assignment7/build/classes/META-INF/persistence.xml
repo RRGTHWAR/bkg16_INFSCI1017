@@ -4,12 +4,12 @@
 		<class>bkg16_Music.Song</class>
 		<class>bkg16_Music.Artist</class>
 		<class>bkg16_Music.Album</class>
-			<properties>
-				<property name = "javax.persistence.jdbc.url" value = "jdbc:mysql://sis-teach-01.sis.pitt.edu:3306/music2019"/>
-				<property name="javax.persistence.jdbc.user" value="infsci1017_2019"/>
-				<property name="javax.persistence.jdbc.password" value="infsci1017_2019!"/>
-				<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-				<property name="eclipselink.logging.level" value="FINE"/>
-			</properties>
+		<properties>
+			<property name = "javax.persistence.jdbc.url" value = "jdbc:mysql://sis-teach-01.sis.pitt.edu:3306/music2019"/>
+			<property name="javax.persistence.jdbc.user" value="infsci1017_2019"/>
+			<property name="javax.persistence.jdbc.password" value="infsci1017_2019!"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+			<property name="eclipselink.logging.level" value="FINE"/>
+		</properties>
 	</persistence-unit>
 </persistence>

@@ -2,13 +2,11 @@ package bkg16_Music;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.persistence.*;
 
 /**
- * Class Song defines the Song object and includes methods for deleting the song and
- * adding to and removing from the song's artist list.
+ * Class Song defines the Song object.
  * @author Ben Gundy
  */
 @Entity
@@ -18,7 +16,7 @@ public class Song {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	
 	@Column(name = "song_id")
-	private String songID; //SOMEHOW LINK THIS TO THE @ID ABOVE
+	private String songID;
 	
 	@Column(name = "title")
 	private String title;
@@ -36,8 +34,35 @@ public class Song {
 	private String recordDate;
 	
 	@Transient
-	private Map<String, Artist> SongArtists;	
+	private Map<String, Artist> songArtists;	
 	
+	
+	/**
+	 * This method adds an artist to the list of artists associated with the song.
+	 * @param artist is the object of the artist to be added.
+	 */
+	public void addArtist(Artist artist) {
+		this.songArtists.put(artist.getArtistID(), artist);
+	}
+	
+	/**
+	 * This method removes an artist from the list of artists associated with the song.
+	 * The method does not remove the artist from the database.
+	 * @param artistID is the identifying UUID of the artist to be removed.
+	 */
+	public void deleteArtist(String artistID) {
+		this.songArtists.remove(artistID);
+	}
+	
+	/**
+	 * This method also removes an artist from the list of artists associated with the song.
+	 * The method does not remove the artist from the database.
+	 * @param artist is the object of the artist to be removed.
+	 */
+	public void deleteArtist(Artist artist) {
+		this.songArtists.remove(artist.getArtistID());
+	}
+
 //Getters and Setters
 	
 	public String getSongID() {
@@ -86,6 +111,11 @@ public class Song {
 	
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
+	}
+	
+	//Skipping setter for songArtists, since they will be added and removed via the methods above.
+	public Map<String, Artist> getSongArtists() {
+		return songArtists;
 	}
 	
 }
