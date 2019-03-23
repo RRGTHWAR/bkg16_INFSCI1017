@@ -1,0 +1,9 @@
+package bkg16_Music;
+
+import javax.persistence.*;
+
+@Entity
+@Table (name = "song_artist")
+public class SongArtistManager {
+
+}

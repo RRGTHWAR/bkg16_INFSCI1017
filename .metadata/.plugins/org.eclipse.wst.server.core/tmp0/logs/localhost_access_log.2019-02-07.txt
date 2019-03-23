@@ -1,6 +1,0 @@
-127.0.0.1 - - [07/Feb/2019:21:20:38 -0500] "GET / HTTP/1.1" 404 1074
-0:0:0:0:0:0:0:1 - - [07/Feb/2019:21:20:39 -0500] "GET /MusicWithMySQL/Index.html HTTP/1.1" 200 121
-0:0:0:0:0:0:0:1 - - [07/Feb/2019:21:23:35 -0500] "GET /MusicWithMySQL/Index.html HTTP/1.1" 200 121
-0:0:0:0:0:0:0:1 - - [07/Feb/2019:21:23:35 -0500] "GET /favicon.ico HTTP/1.1" 404 1085
-127.0.0.1 - - [07/Feb/2019:21:24:01 -0500] "GET /MusicWithMySQL/Index.html HTTP/1.1" 200 121
-127.0.0.1 - - [07/Feb/2019:21:24:02 -0500] "GET /favicon.ico HTTP/1.1" 404 1085

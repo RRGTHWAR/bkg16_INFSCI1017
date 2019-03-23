@@ -1,0 +1,27 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.persistence.*;
+
+import org.json.JSONObject;
+import org.json.JSONArray;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		GenreManager gm = new GenreManager();
+		Genre g = gm.getGenre("e125e302-8bc5-454c-b0d9-a2628826258b");
+		System.out.println(g.getDescription());
+		// gm.updateGenre(20, "I just updated this", "");
+		
+		//gm.deleteGenre(20);
+		
+		System.out.println("TEST");
+		
+	}
+
+}

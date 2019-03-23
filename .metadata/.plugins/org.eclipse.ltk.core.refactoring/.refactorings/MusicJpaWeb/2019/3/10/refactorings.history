@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;GenreServlet&apos; to &apos;CreateGenre&apos;&#x0A;- Original project: &apos;MusicJpaWeb&apos;&#x0A;- Original element: &apos;GenreServlet&apos;&#x0A;- Renamed element: &apos;CreateGenre&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;GenreServlet&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{GenreServlet.java[GenreServlet" matchStrategy="1" name="CreateGenre" qualified="false" references="true" similarDeclarations="false" stamp="1551829015543" textual="false" version="1.0"/>
+</session>
