@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Albums</title>
+</head>
+<body>
+<form id="albumSearch" action="AlbumListWS" method="post">
+
+</form>
+
+</body>
+</html>

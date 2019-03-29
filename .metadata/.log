@@ -1080,3 +1080,6 @@ java.io.FileNotFoundException: /Users/bengundy/Documents/GitHub/bkg16_INFSCI1017
 
 !ENTRY org.eclipse.wst.server.discovery 1 0 2019-03-22 20:03:37.981
 !MESSAGE already installed: org.eclipse.jst.server.generic.jonas4
+
+!ENTRY org.eclipse.jface.text 2 0 2019-03-26 20:00:10.261
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.boolean'
