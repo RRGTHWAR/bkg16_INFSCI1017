@@ -1,0 +1,57 @@
+package bkg16_Music;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class ArtistListWS
+ */
+@WebServlet("/ArtistListWS")
+public class ArtistListWS extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ArtistListWS() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("application/json");
+		ArtistManager am = new ArtistManager();
+		String artistName = "";
+		String searchType = "";
+		String songID = "";
+		
+		if(request.getParameter("songID") != null) {
+			songID = request.getParameter("songID");
+			response.getWriter().print(am.getArtistListBySongID(songID));
+		} else {
+			
+		}
+			if(request.getParameter("artistName") != null && request.getParameter("searchType") != null) {
+				artistName = request.getParameter("artistName");
+				searchType = request.getParameter("searchType");
+			}
+			//If artistName and searchType are blank, then return everything.
+				response.getWriter().print(am.getArtistList(artistName, searchType));
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

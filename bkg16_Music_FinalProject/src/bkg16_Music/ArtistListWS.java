@@ -19,7 +19,6 @@ public class ArtistListWS extends HttpServlet {
      */
     public ArtistListWS() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -28,22 +27,33 @@ public class ArtistListWS extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		ArtistManager am = new ArtistManager();
-		String bandName = "";
+		String artistName = "";
 		String searchType = "";
+		// Below IDs allow for searching artist list by song or album. 
+		String songID = "";
+		String albumID = "";
 		
-		if(request.getParameter("bandName") != null && request.getParameter("searchType") != null) {
-			bandName = request.getParameter("bandName");
-			searchType = request.getParameter("searchType");
+		// First check whether an album or song ID was passed and, if so, get associated artists. 
+		if(request.getParameter("songID") != null) {
+			songID = request.getParameter("songID");
+			response.getWriter().print(am.getArtistListBySongID(songID));
+		} else if (request.getParameter("albumID") != null) {
+			albumID = request.getParameter("albumID");
+			response.getWriter().print(am.getArtistListByAlbumID(albumID));
+		} else { // If no album or song provided, can assume typical artist search.
+			if(request.getParameter("artistName") != null && request.getParameter("searchType") != null) {
+				artistName = request.getParameter("artistName");
+				searchType = request.getParameter("searchType");
+			}
+			// If artistName and searchType are blank, then return everything.
+				response.getWriter().print(am.getArtistList(artistName, searchType));
 		}
-		//If bandName and searchType are blank, then return everything.
-			response.getWriter().print(am.getArtistList(bandName, searchType));
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

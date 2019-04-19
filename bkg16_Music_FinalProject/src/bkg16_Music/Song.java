@@ -1,7 +1,6 @@
 package bkg16_Music;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -15,9 +14,9 @@ import org.json.JSONObject;
 @Entity
 @Table (name="song")
 public class Song {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
 	@Column(name = "song_id")
 	private String songID;
 	
@@ -36,37 +35,25 @@ public class Song {
 	@Column(name = "record_date")
 	private String recordDate;
 	
-	@Transient
-	private Map<String, Artist> songArtists;	
+	// Inverse join to create a list of albums for this song.
+	@ManyToMany(mappedBy = "albumSongs", fetch = FetchType.EAGER)
+	private Set<Album> songAlbums;
 	
+	// Inverse join to create a list of artists for this song.
+	@ManyToMany(mappedBy = "artistSongs", fetch = FetchType.EAGER)
+	private Set<Artist> songArtists;
 	
-	/**
-	 * This method adds an artist to the list of artists associated with the song.
-	 * @param artist is the object of the artist to be added.
-	 */
-	public void addArtist(Artist artist) {
-		this.songArtists.put(artist.getArtistID(), artist);
-	}
-	
-	/**
-	 * This method removes an artist from the list of artists associated with the song.
-	 * The method does not remove the artist from the database.
-	 * @param artistID is the identifying UUID of the artist to be removed.
-	 */
-	public void deleteArtist(String artistID) {
-		this.songArtists.remove(artistID);
-	}
-	
-	/**
-	 * This method also removes an artist from the list of artists associated with the song.
-	 * The method does not remove the artist from the database.
-	 * @param artist is the object of the artist to be removed.
-	 */
-	public void deleteArtist(Artist artist) {
-		this.songArtists.remove(artist.getArtistID());
-	}
+	// Joining Song to Genre via the song_genre table to build a Set of genres for this song.
+	// Source: https://wiki.eclipse.org/EclipseLink/UserGuide/JPA/Basic_JPA_Development/Mapping/Relationship_Mappings/Collection_Mappings/ManyToMany	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "song_genre",
+			joinColumns = @JoinColumn(name = "fk_song_id", referencedColumnName="song_id"),
+			inverseJoinColumns = @JoinColumn(name = "fk_genre_id", referencedColumnName="genre_id")
+			)
+	private Set<Genre> songGenres;
 
-//Getters and Setters
+	// Getters and Setters
 	
 	public String getSongID() {
 		return songID;
@@ -116,11 +103,34 @@ public class Song {
 		this.filePath = filePath;
 	}
 	
-	//Skipping setter for songArtists, since they will be added and removed via the methods above.
-	public Map<String, Artist> getSongArtists() {
+	public Set<Album> getSongAlbums() {
+		return songAlbums;
+	}
+	
+	public void setSongAlbums(Set<Album> songAlbums) {
+		this.songAlbums = songAlbums;
+	}
+	
+	public Set<Artist> getSongArtists() {
 		return songArtists;
 	}
 	
+	public void setSongArtists(Set<Artist> songArtists) {
+		this.songArtists = songArtists;
+	}
+	
+	public Set<Genre> getSongGenres() {
+		return songGenres;
+	}
+	
+	public void setSongGenres(Set<Genre> songGenres) {
+		this.songGenres = songGenres;
+	}
+	
+	/**
+	 * This method converts the Song object to JSON.
+	 * @return is the Song as a JSON object.
+	 */
 	public JSONObject toJSON(){
 		JSONObject songJson = new JSONObject();
 		try {
@@ -131,13 +141,9 @@ public class Song {
 			songJson.put("release_date", this.releaseDate);
 			songJson.put("record_date", this.recordDate);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return songJson;
-		
 	}
 
-	
 }

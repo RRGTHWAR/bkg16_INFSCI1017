@@ -1,0 +1,134 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Music Genres</title>
+<script src="js/jquery-3.3.1.min.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+	<div id="navBar">
+		<ul>
+			<li><a href="album.html" title="Albums">Albums</a></li>
+			<li><a href="artist.html" title="Artists">Artists</a></li>
+			<li><a href="genre.html" title="Genres">Genres</a></li>
+			<li><a href="song.html" title="Songs">Songs</a></li>
+		</ul>
+	</div>
+	<h1 id="mainHeader" >Spotify Ripoff</h1>
+	
+	<div id="genreSearch" class="searchBox" >
+		<div>
+			Search Type: 
+			<select name="searchType" id="searchType" class="textField">
+				<option value="equals">Equals</option>
+				<option value="begins">Begins</option>
+				<option value="ends">Ends</option>
+				<option value="contains">Contains</option>
+				<option value="">All</option>
+			</select>
+		</div>
+		<div>
+			Genre Name: <input type="text" id="genreName" name="genreName" value="" class="textField" />
+		</div>
+		<div id="btns" >
+			<ul>
+				<li><input type="button" id="btnSearch" name="btnSubmit" class="actButton" value="Search" /></li>
+				<li><input type="button" id="btnClear" name ="btnClear" class="actButton" value="Clear Results" /></li>
+			</ul>
+		</div>
+	</div>
+
+
+	<div id="searchResults">
+		<table border="1" id="tblSearchResults">
+			<tr>
+			<th>Genre Name</th>
+			<th>Genre Description</th>
+			<th>View Songs</th>
+			</tr>
+		</table>
+	</div>
+
+</body>
+
+<script>
+	$(document).ready(function (){
+		$("#btnClear").click(function (){
+			clearResultsTable();
+		});
+		$("#btnSearch").click(function (){
+			search();
+		});
+		
+		$("#genreName").keyup(function(){
+			var keyPressed = $("#genreName").val();
+			if(keyPressed.length > 2) {
+				search();					
+			} else {
+				clearResultsTable();
+			}
+
+		});
+	});
+	
+	function search(optSearchType) {
+		var genreName = $("#genreName").val();
+		var searchType = $("#searchType").val();
+		// console.log("Genre: " + genreName);
+		// console.log("SearchType: " + searchType);
+		var url = "GenreListWS?genreName=" + genreName + "&searchType=" + searchType;
+		// console.log(url);
+		$.get(url, function(resp){
+			parseGenreData(resp);
+		})
+	}
+	
+	function parseGenreData(data){
+		// $("#searchResults").text(JSON.stringify(data));
+		var result = "";
+		
+		for(var i=0; i < data.length; i++){
+			var tr = $("<tr></tr>"); // created empty html table row
+			
+			// First data cell
+			var td = $("<td></td>"); // created empty html table data
+			td.html(data[i].genre_name);
+			tr.append(td);
+			
+			// Second data cell
+			// Note that we don't need to redeclare this
+			td = $("<td></td>");
+			td.html(data[i].description)
+			tr.append(td);
+			
+			// Second data cell
+			// Note that we don't need to redeclare this
+			td = $("<td></td>");
+			var link = "<a href='song.html?genre_id=" + data[i].genre_id + "'>View Songs</a>";
+			td.html(link)
+			tr.append(td);
+			
+			// Append row to the table
+			$("#tblSearchResults").append(tr);
+			
+			// result += 'Name: ' + data[i].genre_name + ' Description: ' + data[i].description + '<br />';
+		}
+	}
+		
+		// $("#searchResults").html(result);
+		
+		//Source: https://stackoverflow.com/questions/2620181/clear-table-jquery
+		function clearResultsTable() {
+			$("#tblSearchResults td").parent().remove();
+		}
+		
+		//Source: https://memorynotfound.com/detect-enter-keypress-javascript-jquery/
+		$(document).keypress(function(e) {
+			var keycode = (e.keyCode ? e.keyCode : e.which);
+			if (keycode == '13') {
+				$("#btnSearch").click();
+			}
+		});
+</script>
+</html>

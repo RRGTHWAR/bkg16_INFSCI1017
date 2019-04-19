@@ -1,0 +1,27 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Music Genres</title>
+</head>
+<body>
+<form id="genreSearch" action="GenreListWS" method="post">
+	<div>
+		Genre Name: <input type="text" id="genreName" name="genreName" value="" />
+	</div>
+	<div>
+		Search Type: 
+		<select name="searchType" id="searchType">
+			<option value="">Everything</option>
+			<option value="equals">Equals</option>
+			<option value="begins">Begins</option>
+			<option value="ends">Ends</option>
+			<option value="contains">Contains</option>
+		</select>
+	</div>
+	<div>
+		<input type="submit" name="btnSubmit" value="Search" />
+	</div>
+</form>
+
+</body>
+</html>

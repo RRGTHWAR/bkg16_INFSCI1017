@@ -19,20 +19,19 @@ public class AlbumWS extends HttpServlet {
      */
     public AlbumWS() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// response.setContentType("application/json");
+		response.setContentType("application/json");
 		AlbumManager am = new AlbumManager();
 		String albumID = request.getParameter("albumID");
 		if(albumID != null){
 			if(!albumID.equals("")){
 				Album a = am.getAlbum(albumID);
-				response.getWriter().print(a.toJSON().toString());
+				response.getWriter().print(a.toJSON());
 			}
 		}
 	}
@@ -41,7 +40,6 @@ public class AlbumWS extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

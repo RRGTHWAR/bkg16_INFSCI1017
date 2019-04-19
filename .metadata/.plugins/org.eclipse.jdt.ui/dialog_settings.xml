@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/Libraries/mysql-connector-java-5.1.47" key="org.eclipse.jdt.ui.lastextjar"/>
-	<section name="SourceActionDialog.methods">
-		<item value="false" key="SynchronizedModifier"/>
-		<item value="false" key="Comments"/>
-		<item value="1" key="VisibilityModifier"/>
-		<item value="false" key="FinalModifier"/>
+	<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/Libraries" key="org.eclipse.jdt.ui.lastextjar"/>
+	<section name="org.eclipse.ltk.ui.refactoring.settings">
+		<item value="false" key="updateSimilarElements"/>
+		<item value="1" key="updateSimilarElementsMatchStrategy"/>
+		<item value="false" key="updateTextualMatches"/>
+	</section>
+	<section name="SelfEncapsulateFieldWizard">
+		<item value="false" key="GenerateJavadoc"/>
 	</section>
 	<section name="NewClassWizardPage">
 		<item value="false" key="create_constructor"/>
@@ -14,19 +16,109 @@
 	<section name="OptionalMessageDialog.hide.">
 		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
 	</section>
+	<section name="DialogBounds_GetterSetterTreeSelectionDialog">
+		<item value="519" key="DIALOG_WIDTH"/>
+		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>
+		<item value="639" key="DIALOG_HEIGHT"/>
+		<item value="576" key="DIALOG_X_ORIGIN"/>
+		<item value="81" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="RefactoringWizard.preview">
+		<item value="600" key="width"/>
+		<item value="400" key="height"/>
+	</section>
+	<section name="javadoc">
+		<item value="public" key="access"/>
+		<item value="false" key="noindex"/>
+		<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/bkg16_Music_Assignment7/javadoc.xml" key="antpath"/>
+		<item value="false" key="nodeprecatedlist"/>
+		<item value="true" key="use"/>
+		<item value="true" key="author"/>
+		<item value="false" key="nodeprecated"/>
+		<item value="false" key="nonavbar"/>
+		<item value="" key="docletpath"/>
+		<item value="/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/bin/javadoc" key="javadoc_command_history"/>
+		<item value="1.8" key="source"/>
+		<item value="true" key="version"/>
+		<item value="" key="docletname"/>
+		<item value="true" key="splitindex"/>
+		<item value="true" key="fromStandard"/>
+		<item value="false" key="notree"/>
+		<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/bkg16_Music_Assignment7/doc" key="destdir"/>
+		<item value="true" key="openinbrowser"/>
+		<section name="projects">
+			<section name="MusicJPA">
+				<item value="/Users/bengundy/Desktop/IS1017/MusicJPA/javadoc.xml" key="antpath"/>
+				<item value="/Users/bengundy/Desktop/IS1017/MusicJPA/doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="MySQLConnectTest">
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/MySQLConnectTest/javadoc.xml" key="antpath"/>
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/MySQLConnectTest/doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="MusicWithMySQL">
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/MusicWithMySQL/javadoc.xml" key="antpath"/>
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/MusicWithMySQL/doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="bkg16_Music_Assignment6">
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/bkg16_Music_Assignment6/javadoc.xml" key="antpath"/>
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/bkg16_Music/doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="bkg16_Music">
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/bkg16_Music/javadoc.xml" key="antpath"/>
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/bkg16_Music/doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="bkg16_Music_Assignment5">
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/bkg16_Music_Assignment5/javadoc.xml" key="antpath"/>
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/bkg16_Music/doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="Servers">
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/Servers/javadoc.xml" key="antpath"/>
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/Servers/doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="AdventureGame">
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/AdventureGame/javadoc.xml" key="antpath"/>
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/AdventureGame/doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="bkg16_Music_Assignment7">
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/bkg16_Music_Assignment7/javadoc.xml" key="antpath"/>
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/bkg16_Music_Assignment7/doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="bkg16_Music_Lab1">
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/bkg16_Music_Lab1/javadoc.xml" key="antpath"/>
+				<item value="/Users/bengundy/Documents/GitHub/bkg16_INFSCI1017/bkg16_Music/doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+		</section>
+	</section>
+	<section name="SourceActionDialog.methods">
+		<item value="false" key="SynchronizedModifier"/>
+		<item value="false" key="Comments"/>
+		<item value="2" key="InsertPosition.v2"/>
+		<item value="1" key="VisibilityModifier"/>
+		<item value="false" key="FinalModifier"/>
+	</section>
 	<section name="BuildPathsPropertyPage">
 		<item value="2" key="pageIndex"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
-	<section name="completion_proposal_size">
-	</section>
-	<section name="DialogBounds_GetterSetterTreeSelectionDialog">
-		<item value="519" key="DIALOG_WIDTH"/>
+	<section name="JavadocWizardDialog">
+		<item value="600" key="DIALOG_WIDTH"/>
 		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>
-		<item value="639" key="DIALOG_HEIGHT"/>
-		<item value="253" key="DIALOG_X_ORIGIN"/>
-		<item value="-42" key="DIALOG_Y_ORIGIN"/>
+		<item value="531" key="DIALOG_HEIGHT"/>
+		<item value="362" key="DIALOG_X_ORIGIN"/>
+		<item value="66" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="completion_proposal_size">
 	</section>
 	<section name="AddGetterSetterDialog">
 		<item value="false" key="SortOrdering"/>

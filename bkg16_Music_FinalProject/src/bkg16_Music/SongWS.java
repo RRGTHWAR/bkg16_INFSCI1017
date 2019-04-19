@@ -19,20 +19,19 @@ public class SongWS extends HttpServlet {
      */
     public SongWS() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// response.setContentType("application/json");
+		response.setContentType("application/json");
 		SongManager sm = new SongManager();
 		String songID = request.getParameter("songID");
 		if(songID != null){
 			if(!songID.equals("")){
 				Song s = sm.getSong(songID);
-				response.getWriter().print(s.toJSON().toString());
+				response.getWriter().print(s.toJSON());
 			}
 		}
 	}
@@ -41,7 +40,6 @@ public class SongWS extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

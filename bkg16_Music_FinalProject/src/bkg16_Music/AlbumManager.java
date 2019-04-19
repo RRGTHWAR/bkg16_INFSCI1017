@@ -1,13 +1,14 @@
 package bkg16_Music;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import javax.persistence.*;
 
 import org.json.JSONArray;
 
 /**
- * Class AlbumManager is responsible for creating, updating and deleting Album records. 
+ * Class AlbumManager is responsible for creating, updating, retrieving and deleting Album records. 
  * @author bengundy
  *
  */
@@ -22,9 +23,10 @@ public class AlbumManager {
 	 * @param numberOfTracks is the number of tracks on the album.
 	 * @param pmrcRating is the PMRC's rating for the album.
 	 * @param length is the length of the album in minutes.
+	 * @param albumSongs is the songs associated with the album.
 	 */
-	public void createAlbum(String title, String releaseDate, String coverImagePath, String recordingCompany, int numberOfTracks, String pmrcRating, int length) {
-		//Create and activate persistence manager connection.
+	public void createAlbum(String title, String releaseDate, String coverImagePath, String recordingCompany, int numberOfTracks, String pmrcRating, int length, Set<Song> albumSongs) {
+		// Create and activate persistence manager connection.
 		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("bkg16_Music");
 		EntityManager em = emFactory.createEntityManager();
 		em.getTransaction().begin();
@@ -39,14 +41,15 @@ public class AlbumManager {
 		a.setNumberOfTracks(numberOfTracks);
 		a.setPmrcRating(pmrcRating);
 		a.setLength(length);
+		a.setAlbumSongs(albumSongs);
 
-		//Add Album object to ORM object grid.
+		// Add Album object to ORM object grid.
 		em.persist(a);
 		
-		//Commit transaction.
+		// Commit transaction.
 		em.getTransaction().commit();
 		
-		//Close connection to persistence manager.
+		// Close connection to persistence manager.
 		em.close();
 		emFactory.close();
 		
@@ -62,8 +65,9 @@ public class AlbumManager {
 	 * @param numberOfTracks is the number of tracks on the album.
 	 * @param pmrcRating is the PMRC's rating for the album.
 	 * @param length is the length of the album in minutes.
+	 * @param albumSongs is the songs associated with the album.
 	 */
-	public void updateAlbum(String albumID, String title, String releaseDate, String coverImagePath, String recordingCompany, int numberOfTracks, String pmrcRating, int length) {
+	public void updateAlbum(String albumID, String title, String releaseDate, String coverImagePath, String recordingCompany, int numberOfTracks, String pmrcRating, int length, Set<Song> albumSongs) {
 		//Create and activate persistence manager connection.
 		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("bkg16_Music");
 		EntityManager em = emFactory.createEntityManager();
@@ -71,7 +75,7 @@ public class AlbumManager {
 		
 		Album a = em.find(Album.class, albumID);
 		
-		//Checking whether all fields are empty (or greater than 0 for ints) before updating them.
+		// Making sure fields are not empty before updating them.
 		if(!title.equals("")) {
 			a.setTitle(title);
 		}
@@ -99,14 +103,18 @@ public class AlbumManager {
 		if(length > 0) {
 			a.setLength(length);
 		}
+		
+		if(albumSongs.size() > 0) {
+			a.setAlbumSongs(albumSongs);
+		}
 
-		//Add Album object to ORM object grid.
+		// Add Album object to ORM object grid.
 		em.persist(a);
 		
-		//Commit transaction.
+		// Commit transaction.
 		em.getTransaction().commit();
 		
-		//Close connection to persistence manager.
+		// Close connection to persistence manager.
 		em.close();
 		emFactory.close();
 	}
@@ -123,43 +131,50 @@ public class AlbumManager {
 		
 		Album a = em.find(Album.class, albumID);
 		
-		//Remove Album object from ORM object grid.
+		// Remove Album object from ORM object grid.
 		em.remove(a);
 		
-		//Commit transaction.
+		// Commit transaction.
 		em.getTransaction().commit();
 		
-		//Close connection to persistence manager.
+		// Close connection to persistence manager.
 		em.close();
 		emFactory.close();
 	}
 	
 	/**
-	 * Method findAlbum locates an Album record in the ORM object grid using its albumID.
+	 * Method getAlbum locates an Album record in the ORM object grid using its albumID.
 	 * @param albumID is the identifying UUID of the target Album.
 	 * @return is the Album object.
 	 */
 	public Album getAlbum(String albumID) {
-		//Create and activate persistence manager connection.
+		// Create and activate persistence manager connection.
 		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("bkg16_Music");
 		EntityManager em = emFactory.createEntityManager();
 		em.getTransaction().begin();
 		
 		Album a = em.find(Album.class, albumID);
 
-		//Close connection to persistence manager.
+		// Close connection to persistence manager.
 		em.close();
 		emFactory.close();
 		
 		return a;
-		
 	}
 	
+	/**
+	 * Method getAlbumList returns a set of albums that fit the incoming search criteria.
+	 * @param searchTerm is the string target of the search.
+	 * @param searchType is the portion of the album title that must match the searchTerm.
+	 * @return is a JSON array containing a list of albums that fit the incoming search criteria. 
+	 */
 	public JSONArray getAlbumList(String searchTerm, String searchType){
+		// Create persistence manager connection.
 		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("bkg16_Music");
 		EntityManager em = emFactory.createEntityManager();
 		
-		// Note that you are querying the object grid, not the database!
+		// Using prepared statement to prevent SQL injections.
+		// Using "LIKE" instead of "=" in the query reduces the number of characters needed in the set parameters for each search type.
 		Query q = em.createQuery("SELECT a.albumID FROM Album a WHERE a.title LIKE ?1");
 		if(!searchTerm.equals("")) {
 			if(searchType.equalsIgnoreCase("equals")) {
@@ -177,16 +192,93 @@ public class AlbumManager {
 			q.setParameter(1, "%");
 		}
 		
+		// Loop through results and add to list.
 		List<String> albumIDs = q.getResultList();
 		JSONArray albumListJSON = new JSONArray();
 		for(String albumID : albumIDs){
 			Album a = em.find(Album.class, albumID);
 			albumListJSON.put(a.toJSON());
 		}
+		
+		// Close connection to persistence manager.
 		em.close();
 		emFactory.close();
 		
 		return albumListJSON;
+	}
+	
+	/**
+	 * Method getAlbumListByArtistID returns a set of albums that are linked to the incoming artistID.
+	 * @param artistID is the ID of the artist to be used in the search.
+	 * @return is a JSON array containing a list of albums that are linked to the artistID. 
+	 */
+	public JSONArray getAlbumListByArtistID(String artistID){
+		// Create persistence manager connection.
+		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("bkg16_Music");
+		EntityManager em = emFactory.createEntityManager();
+		
+		if(!artistID.equals("")) {
+			ArtistManager am = new ArtistManager();
+			Artist artist = am.getArtist(artistID);
+			Set<Song> songs = artist.getArtistSongs();
+			JSONArray albumListJSON = new JSONArray();
+			if(songs != null) {
+				// Since there is no table directly linking albums to artists, pass from artist to song to album.
+				// Loop through each album associated with each song, adding the albums to the list.
+				for (Song song : songs) {
+					for (Album album : song.getSongAlbums()) {
+						albumListJSON.put(album.toJSON());
+					}
+				}
+
+			}
+			
+			// Close connection to persistence manager.			
+			em.close();
+			emFactory.close();
+			
+			return albumListJSON;
+			
+		} else {
+			
+			// Close connection to persistence manager.
+			em.close();
+			emFactory.close();
+			
+			return null;
+		}
+	}
+	
+	/**
+	 * Method getAlbumListBySongID returns a set of albums that are linked to the incoming songID.
+	 * @param songID is the ID of the song to be used in the search.
+	 * @return is a JSON array containing a list of albums that are linked to the songID. 
+	 */
+	public JSONArray getAlbumListBySongID(String songID){
+		// Create persistence manager connection.
+		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("bkg16_Music");
+		EntityManager em = emFactory.createEntityManager();
+		
+		if (songID != null) {
+			Song s = em.find(Song.class, songID);
+			Set<Album> albums = s.getSongAlbums();
+			JSONArray albumListJSON = new JSONArray();
+			for(Album album : albums){
+				albumListJSON.put(album.toJSON());
+			}
+			
+			// Close connection to persistence manager.
+			em.close();
+			emFactory.close();
+			
+			return albumListJSON;
+		}
+		
+		// Close connection to persistence manager.
+		em.close();
+		emFactory.close();
+		
+		return null;
 	}
 	
 }

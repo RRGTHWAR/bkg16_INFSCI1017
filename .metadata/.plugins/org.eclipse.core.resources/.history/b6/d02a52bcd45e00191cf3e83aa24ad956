@@ -1,0 +1,115 @@
+package bkg16_Music;
+
+import java.util.Set;
+
+import javax.persistence.*;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/**
+ * Class Artist defines the Artist object.
+ * @author Ben Gundy
+ */
+@Entity
+@Table (name="artist")
+public class Artist {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "artist_id")
+	private String artistID;
+	
+	@Column(name = "first_name")
+	private String firstName;
+	
+	@Column(name = "last_name")
+	private String lastName;
+	
+	@Column(name = "band_name")
+	private String bandName;
+	
+	@Column(name = "bio")
+	private String bio;
+	
+	// Joining Song to Artist via the song_artist table to build a Set of songs for this artist.
+	// Source: https://wiki.eclipse.org/EclipseLink/UserGuide/JPA/Basic_JPA_Development/Mapping/Relationship_Mappings/Collection_Mappings/ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+		name = "song_artist",
+		joinColumns = @JoinColumn(name = "fk_artist_id", referencedColumnName = "artist_id"),
+		inverseJoinColumns = @JoinColumn(name = "fk_song_id", referencedColumnName = "song_id")
+	)
+	private Set<Song> artistSongs;
+	
+	// Getters and Setters
+	public String getArtistID() {
+		return artistID;
+	}
+
+	public void setArtistID(String artistID) {
+		this.artistID = artistID;
+	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getBandName() {
+		return bandName;
+	}
+
+	public void setBandName(String bandName) {
+		this.bandName = bandName;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+	
+	public Set<Song> getArtistSongs() {
+		return artistSongs;
+	}
+	
+	public void setArtistSongs(Set<Song> artistSongs) {
+		this.artistSongs = artistSongs;
+	}
+	
+	/**
+	 * This method converts the Artist object to JSON.
+	 * @return is the Artist as a JSON object.
+	 */
+	public JSONObject toJSON(){
+		JSONObject artistJson = new JSONObject();
+		try {
+			artistJson.put("artist_id", this.artistID);
+			artistJson.put("first_name", this.firstName);
+			artistJson.put("last_name", this.lastName);
+			artistJson.put("band_name", this.bandName);
+			artistJson.put("bio", this.bio);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return artistJson;
+		
+	}
+
+}

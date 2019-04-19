@@ -19,7 +19,6 @@ public class SongListWS extends HttpServlet {
      */
     public SongListWS() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -28,22 +27,37 @@ public class SongListWS extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		SongManager sm = new SongManager();
-		String title = "";
+		String songTitle = "";
 		String searchType = "";
-		
-		if(request.getParameter("title") != null && request.getParameter("searchType") != null) {
-			title = request.getParameter("title");
-			searchType = request.getParameter("searchType");
+		// Below IDs allow for searching song list by album, artist or genre. 
+		String albumID = "";
+		String artistID = "";
+		String genreID = "";
+
+		// First check whether an album, artist or genre ID was passed and, if so, get associated songs. 
+		if(request.getParameter("albumID") != null) {
+			albumID = request.getParameter("albumID");
+			response.getWriter().print(sm.getSongListByAlbumID(albumID));
+		} else if(request.getParameter("artistID") != null) {
+			artistID = request.getParameter("artistID");
+			response.getWriter().print(sm.getSongListByArtistID(artistID));
+		} else if(request.getParameter("genreID") != null) {
+			genreID = request.getParameter("genreID");
+			response.getWriter().print(sm.getSongListByGenreID(genreID));		
+		} else { // If no album, artist or genre provided, can assume typical song search.
+			if(request.getParameter("songTitle") != null && request.getParameter("searchType") != null) {
+				songTitle = request.getParameter("songTitle");
+				searchType = request.getParameter("searchType");
+			}
+			//If songTitle and searchType are blank, then return everything.
+			response.getWriter().print(sm.getSongList(songTitle, searchType));
 		}
-		//If title and searchType are blank, then return everything.
-			response.getWriter().print(sm.getSongList(title, searchType));
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

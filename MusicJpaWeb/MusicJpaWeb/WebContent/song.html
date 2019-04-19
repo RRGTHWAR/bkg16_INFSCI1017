@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Music Genres</title>
+<script src="js/jquery-3.3.1.min.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<div id="genreSearch">
+	<div>
+		Song Title: <input type="text" id="songTitle" name="songTitle" value="" class="textField" />
+	</div>
+	<div>
+		Search Type: 
+		<select name="searchType" id="searchType" class="textField">
+			<option value="">Everything</option>
+			<option value="equals">Equals</option>
+			<option value="begins">Begins</option>
+			<option value="ends">Ends</option>
+			<option value="contains">Contains</option>
+		</select>
+	</div>
+	<div>
+		<input type="button" id="btnSearch" name="btnSubmit" value="Search" />
+	</div>
+</div>
+
+<div id="searchResults">
+	
+</div>
+
+</body>
+<script>
+	$(document).ready(function (){
+		$("#btnSearch").click(function (){
+			var genreName = $("#songName").val();
+			var searchType = $("#searchType").val();
+			// console.log("Genre: " + genreName);
+			// console.log("SearchType: " + searchType);
+			var url = "GenreListWS?genreName=" + genreName + "&searchType=" + searchType;
+			// console.log(url);
+			$.get(url, function(resp){
+				console.log(resp);
+			})
+		});
+	});
+	
+	
+</script>
+</html>

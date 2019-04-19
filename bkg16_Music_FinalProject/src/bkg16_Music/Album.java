@@ -1,7 +1,6 @@
 package bkg16_Music;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -9,16 +8,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Class Album defines the Album object and includes methods for deleting the album and
- * adding to and removing from the album's song list.
+ * Class Album defines the Album object.
  * @author Ben Gundy
  */
 @Entity
 @Table (name="album")
 public class Album {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
 	@Column(name = "album_id")
 	private String albumID;
 	
@@ -43,37 +41,17 @@ public class Album {
 	@Column(name = "length")
 	private int length;
 	
-	@Transient
-	private Map<String, Song> albumSongs;
-		
+	// Joining Album to Song via the album_song table to build a set of songs for this album.
+	// Source: https://wiki.eclipse.org/EclipseLink/UserGuide/JPA/Basic_JPA_Development/Mapping/Relationship_Mappings/Collection_Mappings/ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "album_song",
+			joinColumns = @JoinColumn(name = "fk_album_id", referencedColumnName="album_id"),
+			inverseJoinColumns = @JoinColumn(name = "fk_song_id", referencedColumnName="song_id")
+			)
+	private Set<Song> albumSongs;
 	
-	/**
-	 * This method adds a song to the list of songs associated with the album.
-	 * @param song is the object of the song to be added.
-	 */
-	public void addSong(Song song) {
-		this.albumSongs.put(song.getSongID(), song);
-	}
-	
-	/**
-	 * This method removes a song from the list of songs associated with the album.
-	 * The method does not remove the song from the database.
-	 * @param songID is the identifying UUID of the song to be removed.
-	 */
-	public void deleteSong(String songID) {
-		this.albumSongs.remove(songID);
-	}
-	
-	/**
-	 * This method also removes a song from the list of songs associated with the album.
-	 * The method does not remove the song from the database.
-	 * @param song is the object of the song to be removed.
-	 */
-	public void deleteSong(Song song) {
-		this.albumSongs.remove(song.getSongID());
-	}
-
-//Getters and Setters
+	// Getters and Setters
 	
 	public String getAlbumID() {
 		return albumID;
@@ -139,11 +117,18 @@ public class Album {
 		this.length = length;
 	}
 	
-	//Skipping setter for albumSongs, since they will be added and removed via the methods above.
-	public Map<String, Song> getAlbumSongs() {
+	public Set<Song> getAlbumSongs() {
 		return albumSongs;
 	}
 	
+	public void setAlbumSongs(Set<Song> albumSongs) {
+		this.albumSongs = albumSongs;
+	}
+
+	/**
+	 * This method converts the Album object to JSON.
+	 * @return is the Album as a JSON object.
+	 */
 	public JSONObject toJSON(){
 		JSONObject albumJson = new JSONObject();
 		try {
@@ -156,12 +141,9 @@ public class Album {
 			albumJson.put("PMRC_rating", this.pmrcRating);
 			albumJson.put("length", this.length);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return albumJson;
-		
 	}
 
 }

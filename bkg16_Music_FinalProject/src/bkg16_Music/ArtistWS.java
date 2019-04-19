@@ -19,20 +19,19 @@ public class ArtistWS extends HttpServlet {
      */
     public ArtistWS() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// response.setContentType("application/json");
+		response.setContentType("application/json");
 		ArtistManager am = new ArtistManager();
 		String artistID = request.getParameter("artistID");
 		if(artistID != null){
 			if(!artistID.equals("")){
 				Artist a = am.getArtist(artistID);
-				response.getWriter().print(a.toJSON().toString());
+				response.getWriter().print(a.toJSON());
 			}
 		}
 	}
@@ -41,7 +40,6 @@ public class ArtistWS extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

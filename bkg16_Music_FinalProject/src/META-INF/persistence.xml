@@ -4,6 +4,7 @@
 		<class>bkg16_Music.Song</class>
 		<class>bkg16_Music.Artist</class>
 		<class>bkg16_Music.Album</class>
+		<class>bkg16_Music.Genre</class>
 		<properties>
 			<property name = "javax.persistence.jdbc.url" value = "jdbc:mysql://sis-teach-01.sis.pitt.edu:3306/music2019"/>
 			<property name="javax.persistence.jdbc.user" value="infsci1017_2019"/>
